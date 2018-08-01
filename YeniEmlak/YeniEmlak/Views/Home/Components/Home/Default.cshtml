@@ -1,0 +1,15 @@
+﻿@model YeniEmlak.ViewModel.HomeViewModel;
+
+
+<div class="Temp">
+    <div class="Top">
+        <span class="Price">@Model.Price</span>
+        <span class="Top-Temp"> AZN/ SATILIR </span>
+    </div>
+    <img src="@Url.Action("GetImage", "Home", new { fileName=Model.HomeImg})" />
+    <h5><b>@Model.City?.Name</b>, @Model.HomeType.Name </h5>
+</div>
+
+
+
+

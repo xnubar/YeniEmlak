@@ -1,0 +1,280 @@
+﻿@using YeniEmlak.Models
+@model YeniEmlak.ViewModel.HomeViewModel
+
+
+
+@{
+    ViewData["Title"] = "AddHome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/css/addhome.css">
+
+<table>
+    <tbody>
+        <tr>
+            <td height="15" width="830" />
+            <td rowspan="2" width="174" align="left" valign="top" height="2000" />
+        </tr>
+        <tr>
+            <td class="inner_table" valign="top" style="padding: 0px 10px 0px 10px; min-height:1500px">
+
+                <table align="center" cellpadding="0" cellspacing="0" width:"90%">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <form asp-action="Create" method="Post" class="form" enctype="multipart/form-data">
+                                    <label>
+                                        <span>
+                                            <r>*</r>
+                                            Elanın növü :
+                                        </span>
+
+                                        <select asp-for="AdverTypeId" class="bselect" id="AdvId"
+                                                asp-items="@(new SelectList(@Model.AdverTypes,"Id","Name"))"></select>
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <span>
+                                            <r>*</r>
+                                            Əmlakın növü :
+                                        </span>
+                                        <select asp-for="HomeTypeId" class="bselect" id="HomeTypes"
+                                                asp-items="@(new SelectList(@Model.HomeTypes,"Id","Name"))"></select>
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <span>
+                                            <r>*</r>
+                                            Şəhər :
+                                        </span>
+                                        <select asp-for="CityId" class="bselect" id="Cities"
+                                                asp-items="@(new SelectList(@Model.Cities,"Id","Name"))"></select>
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <span>
+                                            <r>*</r>
+                                            Ünvan :
+                                        </span>
+                                        <textarea asp-for="Address" placeholder="Yalnız ünvan və yerləşmə haqqında məlumatı göstərin."></textarea>
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <h2>Əmlak haqqında məlumat.</h2>
+                                    <br />
+                                    <br />
+                                    <label id="menzil_nov" style="display: none;">
+                                        <span><r>*</r>Binanın növü :</span>
+                                        <select asp-for="BuildingType" class="bselect" id="menzilNovu"
+                                                asp-items="@(new SelectList(Enum.GetNames(typeof(BuildingType))))"></select>
+                                    </label>
+                                    <label id="mertebe_sayi" style="display: none;">
+                                        <span><r>*</r>Mərtəbə sayı :</span>
+                                        <input asp-for="TotalStairCount" type="number" class="minput" />
+                                    </label>
+                                    <label id="mertebe" style="display: none;">
+                                        <span><r>*</r>Yerləşdiyi mərtəbə :</span>
+                                        <input asp-for="Stair" type="number" class="minput" />
+                                    </label>
+                                    <label id="otaqSayi" style="display: none;">
+                                        <span><r>*</r>Otaq sayı :</span>
+                                        <input asp-for="RoomCount" type="number" class="minput" />
+                                    </label>
+                                    <label id="sahe_m" style="display: none;">
+                                        <span><r>*</r>Tikili sahəsi :</span>
+                                        <input type="text" asp-for="Area" class="minput" name="sahe_m" placeholder="kv. m"><note>&nbsp;kv. m</note>
+                                    </label>
+                                    <label id="sahe_s" style="display: none;">
+                                        <span><r>*</r>Torpaq sahəsi :</span>
+                                        <input asp-for="LandArea" type="text" class="minput" name="sahe_s" placeholder="sot"><note>&nbsp;sot (məs. 1.5 və ya 1)</note>
+                                    </label>
+                                    <label>
+                                        <span>
+                                            <r>*</r>
+                                            Qiymət :
+                                        </span>
+                                        <input asp-for="Price" type="number" class="minput" placeholder="azn" />
+                                        <note>&nbsp;azn (yalnız manat ilə)</note>
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <label id="kredit" for="none" style="display:none;">
+                                        <span>Kredit :</span>
+                                        <input type="checkbox" id="kredit_v" name="kredit" value="1">
+                                        <label for="kredit_v"><span></span></label>&nbsp;<note>Yalnız kreditdə olan əmlak üçün</note>
+                                    </label>
+                                    <label id="sened" style="display: none;">
+                                        <span><r>*</r>Əmlakın sənədi :</span>
+                                        <select asp-for="CityId" class="bselect" id="Cities"
+                                                asp-items="@(new SelectList(Enum.GetNames(typeof(EstateDocumentType))))"></select>
+                                    </label>
+                                    <label>
+                                        <span>
+                                            <r>*</r>
+                                            Əmlak haqqında :
+                                        </span>
+                                        <textarea asp-for="AboutHome" placeholder="Əmlak haqqında məlumatı buraya yazın. Kifayət qədər məlumat yazılmayan elanlar qəbul olunmayacaqdir!"></textarea>
+                                    </label>
+                                    <div id="gosterici" style="visibility:visible; ">
+                                        <span>Göstəricilər :</span>
+                                        <table style="width:520px;" id="equipments">
+                                            <tbody>
+                                                @for (int i = 0; i < @Model.AllEquipments.Count(); i = i + 5)
+                                                {
+                                                    <tr>
+
+                                                        @for (int j = i; j < Math.Min(@Model.AllEquipments.Count(), i + 5); j++)
+                                                        {
+                                                            <td style="padding: 0px 8px 0px 8px; height: 20px; line-height: 20px; ">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" name="@Model.AllEquipments[j].Id" value="@Model.AllEquipments[j].Id" id="@Model.AllEquipments[j].Id" />
+                                                                    <label>@Model.AllEquipments[j].Name</label>
+                                                                </span>
+                                                            </td>
+                                                        }
+                                                    </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <h2>Əlaqə məlumatları:</h2>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <span>
+                                            <r>*</r>
+                                            Elan verən :
+                                        </span>
+
+                                        @*<select asp-for="City" class="bselect"
+                                                      asp-items="@(new SelectList(CityViewModel.Cities," Id","Name"))"></select>
+                                            <option value="1">Əmlak sahibi</option>*@
+
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <span>
+                                            <r>*</r>
+                                            Ad :
+                                        </span>
+                                        <input type="text" />
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <span><r>*</r>Tel :</span>
+                                        <input type="text" class="minput" placeholder="1 (Vacibdir!)" maxlength="10"> <note>&nbsp;Nümunə : 0553372888</note>
+                                    </label>
+                                    <label>
+                                        <span>&nbsp;</span>
+                                        <input type="text" class="minput" name="tel2" id="tel2" placeholder="2" maxlength="10">
+                                    </label>
+                                    <label>
+                                        <span>&nbsp;</span>
+                                        <input type="text" class="minput" name="tel3" id="tel3" placeholder="3" maxlength="10">
+                                    </label>
+                                    <label>
+                                        <span>&nbsp;</span>
+                                        <input type="text" class="minput" name="tel4" id="te4" placeholder="4" maxlength="10">
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <span>Email :</span>
+                                        <input type="email">
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <label>
+                                        <span>Qeyd :</span>
+                                        <textarea name="qeyd"></textarea>
+                                    </label>
+                                    <br />
+                                    <br />
+                                    <h2>Şəkillər:</h2>
+                                    <br />
+                                    <br />
+                                    <note>1)Əmlaka aidiyatı olmayan, üzərində <b>yazı</b> və ya <b>logo</b> olan şəkillərlə elan qəbul olunmur</note>
+                                    <br />
+                                    <note>2)Ən azı <b>5</b> şəkil, <b>24</b> qədər şəkil yükləyə bilərsiniz</note>
+                                    <br />
+                                    <note>3)<b>100 000</b> manat və baha qiymətə satılan, <b>500</b> manat və baha qiymətə kirayə verilən elanlar yalnız</note>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <input asp-for="Image" type='file' id="getFile">
+                                    @*
+                                        <script>
+                                            $(function () {
+                                                $("getFile").submit(function (e) {
+                                                    event.preventDefault();
+                                                    return true;
+                                                });
+                                            })
+                                        </script>*@
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <button class="btns" type="submit" id="submitBtn">
+                                        GÖNDƏR
+                                    </button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+@section Scripts{
+
+    <script>
+        var getDependentUIsUrl = "@Url.Action("GetDependentUIs", "Home")";
+        $(function () {
+
+            $("select").on('change', function () {
+                var dependentUIs = $.get(getDependentUIsUrl, function (response) {
+                    for (var i = 0; i < response.length; i++) {
+                        if ($('#' + response[i].selectName).prop('selectedIndex') == response[i].parentId) {
+                            $('#' + response[i].divId).show();
+                        }
+                        else {
+
+
+                            $('#' + response[i].divId).hide();
+                        }
+                    }
+                });
+            });
+        });
+
+    // alert($("input[name=chkboxName]:checked").map(
+    //function () {
+
+    //    return this.value;
+    //}).get().join(","));
+
+    </script>
+}
+
+
+
+
+
+
+

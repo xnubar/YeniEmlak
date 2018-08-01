@@ -1,0 +1,114 @@
+﻿@model YeniEmlak.Models.ViewModel.HomesListViewModel;
+@using YeniEmlak.ViewModel;
+
+@{
+    ViewData["Title"] = "";
+}
+
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/css/HomeStyleSheet.css">
+}
+<table class="content">
+    <tbody>
+        <tr>
+            <td height="15" width="830"></td>
+            <td rowspan="2" width="174" align="left" valign="top" height="2000"><br></td>
+        </tr>
+        <tr>
+            <td valign="top" style="padding: 0px 10px 0px 10px; min-height:1500px;">
+                <table align="left" cellpadding="0" cellspacing="0" width:"100%">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <form class="search" id="form" asp-action="GetSearchResult" method="post" enctype="multipart/form-data">
+                                    <div class="col">
+                                        <label>
+                                            <span>Əmlakın növü</span>
+                                            <select asp-for="@Model.FilterParams.HomeTypeId" class="bselect" id="HomeTypes"
+                                                    asp-items="@(new SelectList(@Model.FilterParams.HomeTypes,"Id","Name"))"></select>
+                                        </label>
+                                        <label>
+                                            <span>Elanın növü</span>
+                                            <select asp-for="@Model.FilterParams.AdverTypeId" class="bselect" id="AdverTypes"
+                                                    asp-items="@(new SelectList(@Model.FilterParams.AdverTypes,"Id","Name"))"></select>
+                                        </label>
+                                        <label>
+                                            <span>Şəhər</span>
+                                            <select asp-for="@Model.FilterParams.CityId" class="bselect" id="Cities"
+                                                    asp-items="@(new SelectList(@Model.FilterParams.Cities,"Id","Name"))"></select>
+                                        </label>
+                                    </div>
+
+
+                                    <div class="col">
+                                        <label for="none">
+                                            <span>Qiymət</span>
+                                            <input asp-for="@Model.FilterParams.Price1" type="number" class="minput" />
+                                            <input asp-for="@Model.FilterParams.Price2" type="number" class="minput" />
+                                        </label>
+                                        <label id="mertebe" for="none">
+                                            <span>Mərtəbə</span>
+                                            <input asp-for="@Model.FilterParams.Stair1" type="number" class="minput" />
+                                            <input asp-for="@Model.FilterParams.Stair2" type="number" class="minput" />
+                                        </label>
+                                        <label id="otaq" for="none">
+                                            <span>Otaq</span>
+                                            <input asp-for="@Model.FilterParams.RoomCount1" type="number" class="minput" />
+                                            <input asp-for="@Model.FilterParams.RoomCount2" type="number" class="minput" />
+                                        </label>
+                                        <label id="sahe_m" for="none">
+                                            <span>Sahəsi</span>
+                                            <input asp-for="@Model.FilterParams.Area1" type="number" class="minput" />
+                                            <input asp-for="@Model.FilterParams.Area2" type="number" class="minput" />
+                                        </label>
+                                    </div>
+
+                                    <div class="bottom">
+                                        <input asp-for="FilterParams.Credit" type="checkbox" id="kredit_v" name="kredit" value="1">
+                                        <label for="kredit_v"><span></span>Kredit</label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="submit" value="Axtar" id="submitBtn">
+                                    </div>
+                                </form>
+
+
+                                <br />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="contentHomes">
+                                    <tbody id="searchResult">
+                                        @{Html.RenderPartial("SearchResult", Model);}
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function (e) {
+            $("#form").submit(function (e) {
+
+                e.preventDefault();
+                  $.ajax({
+                    type: this.method,
+                    url: this.action,
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        console.log(response);
+                        ("#searchResult").load(response);
+                    }
+                });
+            });
+        });
+    </script>
+}
+

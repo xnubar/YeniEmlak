@@ -1,0 +1,80 @@
+﻿table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+  
+}
+.inner_table {
+    background-color: white;
+}
+.form r {
+    color: red;
+}
+
+.form label {
+    display: block;
+    margin: 0px 0px 5px;
+
+}
+
+.form {
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #515151;
+}
+
+.form .bselect {
+    width: 200px;
+}
+
+.form select {
+    background: url(".../images/sel_ar.png") no-repeat right #FFFFFF;
+    text-indent: 0.01px;
+    height: 30px;
+}
+
+
+.form textarea {
+    height: 100px;
+    width: 400px;
+    padding-top: 10px;
+}
+.form .minput {
+    width: 86px;
+}
+.form label > span {
+    float: left;
+    margin-top: 10px;
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    color: #6B6B6B;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.form h2 {
+    font: 14px Arial, Helvetica, sans-serif;
+    padding: 5px 0px 5px 20px;
+    display: block;
+    margin: 0px -150px 10px -150px;
+    color: #FFF;
+    background: #9DC45F;
+    text-shadow: 1px 1px 1px #949494;
+    border-bottom: 1px solid #89AF4C;
+}
+
+.btns {
+    padding: 10px 25px 10px 25px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    width: 150px;
+    height: 30px;
+    background-color: #9DC45F;
+    display: block;
+}
+
+.equipments{
+    float:right;
+}
