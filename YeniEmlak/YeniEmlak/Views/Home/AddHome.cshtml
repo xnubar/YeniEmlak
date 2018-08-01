@@ -101,7 +101,7 @@
                                     </label>
                                     <br />
                                     <br />
-                                    <label id="kredit" for="none" style="display:none;">
+                                    <label id="kredit" style="display:none;">
                                         <span>Kredit :</span>
                                         <input type="checkbox" id="kredit_v" name="kredit" value="1">
                                         <label for="kredit_v"><span></span></label>&nbsp;<note>Yalnız kreditdə olan əmlak üçün</note>
@@ -246,17 +246,14 @@
     <script>
         var getDependentUIsUrl = "@Url.Action("GetDependentUIs", "Home")";
         $(function () {
-
-            $("select").on('change', function () {
+            $("select").on('change', function (e) {
                 var dependentUIs = $.get(getDependentUIsUrl, function (response) {
                     for (var i = 0; i < response.length; i++) {
-                        if ($('#' + response[i].selectName).prop('selectedIndex') == response[i].parentId) {
-                            $('#' + response[i].divId).show();
+                        if ($("#" + response[i].selectName + " option:selected").text() == response[i].parentName) {
+                            $("#" + response[i].divId).show();
                         }
                         else {
-
-
-                            $('#' + response[i].divId).hide();
+                            $("#" + response[i].divId).hide();
                         }
                     }
                 });

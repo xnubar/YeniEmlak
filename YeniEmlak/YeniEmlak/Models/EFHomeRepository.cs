@@ -109,7 +109,10 @@ namespace YeniEmlak.Models
                 {
                     homes = homes.Where(x=>x.AdverTypeId==filterParam.AdverTypeId);
                 }
-
+                if (filterParam.Credit != null)
+                {
+                    homes = homes.Where(x => x.Credit == filterParam.Credit);
+                }
                 if (filterParam.Price1!=null)
                 {
                     homes = homes.Where(x=>x.Price>=filterParam.Price1);

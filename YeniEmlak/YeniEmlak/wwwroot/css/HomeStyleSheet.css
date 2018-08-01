@@ -19,7 +19,9 @@
 
 
 .Temp > .Top > .Top-Temp {
-    color: white
+    color: white;
+    font-size:9.5px;
+      
 }
 
 .contentHomes {
