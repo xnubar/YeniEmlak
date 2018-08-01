@@ -88,7 +88,7 @@ namespace YeniEmlak.Controllers
         {
             filtering.Homes = homeRepo.GetByFilterParams(filtering.FilterParams).Select(x => HomeViewModel.MapHomeToHomeViewModel(x)).ToList();
            
-            return View(filtering);
+            return PartialView("SearchResult",filtering);
         }
 
         public IActionResult AddHome()

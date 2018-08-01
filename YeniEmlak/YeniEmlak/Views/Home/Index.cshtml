@@ -79,8 +79,14 @@
                         <tr>
                             <td colspan="2">
                                 <table class="contentHomes">
-                                    <tbody id="searchResult">
-                                        @{Html.RenderPartial("SearchResult", Model);}
+                                    <tbody>
+                                        <tr>
+                                            <td height="15" width="830" />
+                                            <td rowspan="2" width="174" align="left" valign="top" height="2000" />
+                                        </tr>
+                                        <tr id="searchResult">
+                                            @{Html.RenderPartial("SearchResult", Model);}
+                                        </tr>
                                     </tbody>
                                 </table>
                             </td>
@@ -98,13 +104,12 @@
             $("#form").submit(function (e) {
 
                 e.preventDefault();
-                  $.ajax({
+                $.ajax({
                     type: this.method,
                     url: this.action,
                     data: $(this).serialize(),
                     success: function (response) {
-                        console.log(response);
-                        ("#searchResult").load(response);
+                        $("#searchResult").html(response);
                     }
                 });
             });

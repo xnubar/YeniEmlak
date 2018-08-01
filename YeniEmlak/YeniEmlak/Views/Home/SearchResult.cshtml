@@ -1,15 +1,9 @@
 ﻿@model YeniEmlak.Models.ViewModel.HomesListViewModel;
 @using YeniEmlak.ViewModel;
-<tr>
-    <td height="15" width="830" />
-    <td rowspan="2" width="174" align="left" valign="top" height="2000" />
-</tr>
-<tr>
+
     <td valign="top" style="padding: 0px 10px 0px 10px; min-height:1000px; width:2500px; ">
         @foreach (HomeViewModel item in Model.Homes)
         {
             @await Component.InvokeAsync("Home", item);
-
         }
     </td>
-</tr>
