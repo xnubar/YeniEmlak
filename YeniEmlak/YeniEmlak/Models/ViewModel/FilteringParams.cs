@@ -22,7 +22,7 @@ namespace YeniEmlak.Models.ViewModel
         public int? RoomCount2 { get; set; }
      
        
-        public bool? Credit { get; set; }
+        public bool Credit { get; set; }
         public List<AdverTypeViewModel> AdverTypes = new List<AdverTypeViewModel>();
         public List<CityViewModel> Cities = new List<CityViewModel>();
         public List<HomeTypeViewModel> HomeTypes = new List<HomeTypeViewModel>();

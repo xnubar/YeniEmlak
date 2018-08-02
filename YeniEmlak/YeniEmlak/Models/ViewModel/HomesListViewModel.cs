@@ -10,5 +10,6 @@ namespace YeniEmlak.Models.ViewModel
     {
         public FilteringParams FilterParams { get; set; }
         public List<HomeViewModel> Homes { get; set; }
+        public PagingInfo PageInfo { get; set; }
     }
 }

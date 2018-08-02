@@ -87,6 +87,7 @@
                                         <tr id="searchResult">
                                             @{Html.RenderPartial("SearchResult", Model);}
                                         </tr>
+                                        <tr class="pages" style="display:none"></tr>
                                     </tbody>
                                 </table>
                             </td>
@@ -100,6 +101,7 @@
 
 @section Scripts{
     <script type="text/javascript">
+
         $(function (e) {
             $("#form").submit(function (e) {
 
@@ -109,6 +111,7 @@
                     url: this.action,
                     data: $(this).serialize(),
                     success: function (response) {
+                       
                         $("#searchResult").html(response);
                     }
                 });

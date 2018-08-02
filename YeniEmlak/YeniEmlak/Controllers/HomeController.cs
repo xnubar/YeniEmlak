@@ -22,7 +22,7 @@ namespace YeniEmlak.Controllers
         private readonly IHostingEnvironment appEnvironment;
         private IHomeRepository homeRepo;
         List<HomeViewModel> homes;
-
+        int PageSize = 4;
         public static string DependentUI { get; set; }
         public HomeController(IHomeRepository hr, IHostingEnvironment environment)
         {
@@ -36,24 +36,17 @@ namespace YeniEmlak.Controllers
             home.dependentUIs = homeRepo.DependentUIs.Select(x => DependentUIViewModel.MapDependentUIToDependentUIViewModel(x)).ToList();
             return Json(home.dependentUIs);
         }
-     
+
         public IActionResult Index()
         {
             HomesListViewModel model = new HomesListViewModel();
             FilteringParams filterModel = new FilteringParams();
-            if (Request.Headers["X-Requested-With"].Equals("XMLHttpRequest"))
-            {
-                model.Homes = homeRepo.GetByFilterParams(model.FilterParams).Select(x => HomeViewModel.MapHomeToHomeViewModel(x)).ToList();
-            }
-            else
-            {
-                model.Homes = homeRepo.GetAll().Select(x => HomeViewModel.MapHomeToHomeViewModel(x)).ToList();
-            }
+            model.Homes = homeRepo.GetAll().Select(x => HomeViewModel.MapHomeToHomeViewModel(x)).ToList();
             filterModel.Cities = homeRepo.Cities.Select(x => CityViewModel.MapCityToCityViewModel(x)).ToList();
             filterModel.HomeTypes = homeRepo.HomeTypes.Select(x => HomeTypeViewModel.MapHomeTypeToHomeTypeViewModel(x)).ToList();
             filterModel.AdverTypes = homeRepo.AdverTypes.Select(x => AdverTypeViewModel.MapAdverTypeToAdverTypeViewModel(x)).ToList();
             model.FilterParams = filterModel;
-            return View("Index",model);
+            return View("Index", model);
         }
         public IActionResult GetImage(string fileName)
         {
@@ -61,7 +54,7 @@ namespace YeniEmlak.Controllers
             return File(imageFileStream, "image/jpeg");
         }
 
-    
+
         #region CRUD
         [HttpPost]
         public IActionResult Create(HomeViewModel home)
@@ -84,11 +77,28 @@ namespace YeniEmlak.Controllers
 
 
         [HttpPost]
-        public IActionResult GetSearchResult(HomesListViewModel filtering)
+        public IActionResult GetSearchResult(HomesListViewModel filtering, int pageNo = 1)
         {
-            filtering.Homes = homeRepo.GetByFilterParams(filtering.FilterParams).Select(x => HomeViewModel.MapHomeToHomeViewModel(x)).ToList();
-           
-            return PartialView("SearchResult",filtering);
+            filtering.Homes = homeRepo.GetByFilterParams(filtering.FilterParams).
+                                       Select(x => HomeViewModel.MapHomeToHomeViewModel(x)).
+                                       ToList();
+            //var homes = HomeList(filtering);
+            return PartialView("SearchResult", filtering);
+        }
+
+        public HomesListViewModel HomeList(HomesListViewModel homes, int pageNo = 1)
+        {
+            int totalPage, totalRecord, pageSize;
+            pageSize = 5;
+            totalRecord = homes.Homes.Count();
+            totalPage = (totalRecord / pageSize) + ((totalRecord % pageSize) > 0 ? 1 : 0);
+            return (new HomesListViewModel
+            {
+                Homes = homes.Homes.OrderBy(x => x.Id).
+                                                 Skip((pageNo - 1) * PageSize).
+                                                   Take(pageSize).ToList(),
+                TotalPage = totalPage
+            });
         }
 
         public IActionResult AddHome()

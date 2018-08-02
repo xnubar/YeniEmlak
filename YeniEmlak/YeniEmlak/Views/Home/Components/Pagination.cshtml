@@ -1,0 +1,14 @@
+﻿@model YeniEmlak.Models.ViewModel.HomesListViewModel;
+<span class="paging-buttons">
+    @if (Model.PageInfo.CurrentPage > 1)
+    {
+        <a class="page-preview" href="#"><i class="fa fa-arrow-circle-left fa-3x"></i></a>
+        @Html.Hidden("Preview", Model.PageInfo.CurrentPage - 1)
+    }
+    @if (Model.PageInfo.CurrentPage < Model.PageInfo.TotalPages)
+    {
+        <a class="page-next" href="#"><i class="fa fa-arrow-circle-right fa-3x"></i></a>
+        @Html.Hidden("Next", Model.PageInfo.CurrentPage + 1)
+    }
+</span>
+
