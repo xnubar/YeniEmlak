@@ -92,21 +92,33 @@ namespace YeniEmlak.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AdvewOwnerId = table.Column<int>(nullable: false),
+                    Id = table.Column<string>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    AdverOwnerId = table.Column<int>(nullable: false),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    NormalizedEmail = table.Column<string>(nullable: true),
+                    NormalizedUserName = table.Column<string>(nullable: true),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    UserName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_AdverOwners_AdvewOwnerId",
-                        column: x => x.AdvewOwnerId,
+                        name: "FK_User_AdverOwners_AdverOwnerId",
+                        column: x => x.AdverOwnerId,
                         principalTable: "AdverOwners",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -133,7 +145,7 @@ namespace YeniEmlak.Migrations
                     RoomCount = table.Column<int>(nullable: false),
                     Stair = table.Column<int>(nullable: true),
                     TotalStairCount = table.Column<int>(nullable: true),
-                    UserId = table.Column<int>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -157,9 +169,9 @@ namespace YeniEmlak.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Homes_Users_UserId",
+                        name: "FK_Homes_User_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -170,18 +182,18 @@ namespace YeniEmlak.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    IdUser = table.Column<int>(nullable: false),
-                    Number = table.Column<string>(nullable: true)
+                    Number = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PhoneNumbers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PhoneNumbers_Users_IdUser",
-                        column: x => x.IdUser,
-                        principalTable: "Users",
+                        name: "FK_PhoneNumbers_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -241,14 +253,14 @@ namespace YeniEmlak.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhoneNumbers_IdUser",
+                name: "IX_PhoneNumbers_UserId",
                 table: "PhoneNumbers",
-                column: "IdUser");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_AdvewOwnerId",
-                table: "Users",
-                column: "AdvewOwnerId");
+                name: "IX_User_AdverOwnerId",
+                table: "User",
+                column: "AdverOwnerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -278,7 +290,7 @@ namespace YeniEmlak.Migrations
                 name: "HomeTypes");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "AdverOwners");

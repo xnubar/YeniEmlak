@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,14 +8,11 @@ using YeniEmlak.Models.DomainModel;
 
 namespace YeniEmlak.DomainModel
 {
-    public class User
+    public class User:IdentityUser
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-
+        public string Name { get; set; }      
         [ForeignKey("AdverOwner")]
-        public int AdvewOwnerId { get; set; }
+        public int AdverOwnerId { get; set; }
         public virtual AdverOwner AdverOwner { get; set; }
         public virtual ICollection<Home> Homes { get; set; }
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }

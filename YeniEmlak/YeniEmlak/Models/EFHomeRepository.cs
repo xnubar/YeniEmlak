@@ -24,7 +24,6 @@ namespace YeniEmlak.Models
         public IQueryable<Home> Homes => context.Homes;
         public IQueryable<AdverOwner> AdverOwners => context.AdverOwners;
         public IQueryable<AdverType> AdverTypes => context.AdverTypes;
-        public IQueryable<User> Users => context.Users;
         public IQueryable<City> Cities => context.Cities;
         public IQueryable<PhoneNumber> PhoneNumbers => context.PhoneNumbers;
         public IQueryable<HomeType> HomeTypes => context.HomeTypes;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,17 +10,13 @@ using YeniEmlak.Models.DomainModel;
 
 namespace YeniEmlak.Models.ViewModel
 {
-    public class UserViewModel
+    public class UserViewModel:IdentityUser
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+       
         [Required]
         public string Name { get; set; }
-        [RegularExpression(".+\\@.+\\..+",
-            ErrorMessage = "Emaili düzgün daxil edin.")]
-        public string Email { get; set; }
         public virtual AdverOwnerViewModel AdverOwner { get; set; }
+        public int AdverOwnerId { get; set; }
         public virtual ICollection<Home> Homes { get; set; }
         [Required]
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
@@ -32,7 +29,7 @@ namespace YeniEmlak.Models.ViewModel
                 Name = vm.Name,
                 Email = vm.Email,
                 Homes = vm.Homes,
-                AdverOwner=AdverOwnerViewModel.MapAdverOwnerViewModelToAdverOwner(vm.AdverOwner),
+                AdverOwnerId=vm.AdverOwnerId,
                 PhoneNumbers = vm.PhoneNumbers
             };
 
@@ -45,6 +42,7 @@ namespace YeniEmlak.Models.ViewModel
                 Name = u.Name,
                 Email = u.Email,
                 Homes = u.Homes,
+                AdverOwnerId=u.AdverOwnerId,
                 AdverOwner = AdverOwnerViewModel.MapAdverOwnerToAdverOwnerViewModel(u.AdverOwner),
                 PhoneNumbers = u.PhoneNumbers
             };

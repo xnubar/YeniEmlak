@@ -1,10 +1,11 @@
 ﻿@model YeniEmlak.Models.ViewModel.HomesListViewModel;
 @using YeniEmlak.ViewModel;
 
-    <td valign="top" style="padding: 0px 10px 0px 10px; min-height:1000px; width:2500px; ">
-        @foreach (HomeViewModel item in Model.Homes)
-        {
-            @await Component.InvokeAsync("Home", item);
-        }
-    </td>
-   
+<td valign="top" style="padding: 0px 10px 0px 10px; min-height:1000px; width:2500px; ">
+    @foreach (HomeViewModel item in Model.Homes)
+    {
+        @await Component.InvokeAsync("Home", item);
+    }
+</td>
+
+

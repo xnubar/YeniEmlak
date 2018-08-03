@@ -11,7 +11,7 @@ using YeniEmlak.Models;
 namespace YeniEmlak.Migrations
 {
     [DbContext(typeof(HomeDbContext))]
-    [Migration("20180723115511_InitialModel")]
+    [Migration("20180803135117_InitialModel")]
     partial class InitialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,7 +68,7 @@ namespace YeniEmlak.Migrations
 
                     b.Property<int?>("TotalStairCount");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -100,33 +100,59 @@ namespace YeniEmlak.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdUser");
-
                     b.Property<string>("Number");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdUser");
+                    b.HasIndex("UserId");
 
                     b.ToTable("PhoneNumbers");
                 });
 
             modelBuilder.Entity("YeniEmlak.DomainModel.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AdvewOwnerId");
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<int>("AdverOwnerId");
+
+                    b.Property<string>("ConcurrencyStamp");
 
                     b.Property<string>("Email");
 
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
                     b.Property<string>("Name");
+
+                    b.Property<string>("NormalizedEmail");
+
+                    b.Property<string>("NormalizedUserName");
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvewOwnerId");
+                    b.HasIndex("AdverOwnerId");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("YeniEmlak.Models.DomainModel.AdverOwner", b =>
@@ -220,7 +246,7 @@ namespace YeniEmlak.Migrations
                         .HasForeignKey("HomeTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("YeniEmlak.DomainModel.User")
+                    b.HasOne("YeniEmlak.DomainModel.User", "User")
                         .WithMany("Homes")
                         .HasForeignKey("UserId");
                 });
@@ -229,15 +255,14 @@ namespace YeniEmlak.Migrations
                 {
                     b.HasOne("YeniEmlak.DomainModel.User", "User")
                         .WithMany("PhoneNumbers")
-                        .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("YeniEmlak.DomainModel.User", b =>
                 {
                     b.HasOne("YeniEmlak.Models.DomainModel.AdverOwner", "AdverOwner")
                         .WithMany("Users")
-                        .HasForeignKey("AdvewOwnerId")
+                        .HasForeignKey("AdverOwnerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

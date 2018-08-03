@@ -14,7 +14,6 @@ namespace YeniEmlak.Models
         IQueryable<Home> Homes { get; }
         IQueryable<AdverType> AdverTypes { get; }
         IQueryable<City> Cities { get; }
-        IQueryable<User> Users { get; }
         IQueryable<PhoneNumber> PhoneNumbers { get; }
         IQueryable<AdverOwner> AdverOwners { get; }
         IQueryable<HomeType> HomeTypes { get; }

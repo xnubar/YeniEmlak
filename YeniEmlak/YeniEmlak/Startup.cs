@@ -8,7 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using YeniEmlak.Models;
-
+using YeniEmlak.Models.ViewModel;
+using Microsoft.AspNetCore.Identity;
 namespace YeniEmlak
 {
     public class Startup
@@ -25,6 +26,11 @@ namespace YeniEmlak
         {
             services.AddDbContext<HomeDbContext>(options =>
 options.UseSqlServer(Configuration["Data:YeniEmlak:ConnectionString"]));
+            services.AddDbContext<AppIdentityDbContext>(options =>
+options.UseSqlServer(Configuration["Data:UserIdentity:ConnectionString"]));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+ .AddEntityFrameworkStores<AppIdentityDbContext>()
+ .AddDefaultTokenProviders();
             services.AddTransient<IHomeRepository, EFHomeRepository>();
             services.AddMvc();
         }
@@ -36,6 +42,7 @@ options.UseSqlServer(Configuration["Data:YeniEmlak:ConnectionString"]));
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseAuthentication();
             }
             else
             {
@@ -50,7 +57,8 @@ options.UseSqlServer(Configuration["Data:YeniEmlak:ConnectionString"]));
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            SeedData.EnsurePopulated(app);
+            //SeedData.EnsurePopulated(app);
+            //IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

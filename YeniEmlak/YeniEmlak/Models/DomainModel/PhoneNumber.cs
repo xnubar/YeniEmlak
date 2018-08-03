@@ -10,7 +10,7 @@ namespace YeniEmlak.DomainModel
     {
         public int Id { get; set; }
         [ForeignKey("User")]
-        public int IdUser { get; set; }
+        public string UserId { get; set; }
         
         public User User { get; set; }
         public string Number { get; set; }

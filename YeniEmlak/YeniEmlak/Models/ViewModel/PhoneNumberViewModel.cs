@@ -13,7 +13,7 @@ namespace YeniEmlak.Models.ViewModel
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int IdUser { get; set; }
+        public string UserId { get; set; }
         [Required]
         public UserViewModel User { get; set; }
         [Required]
@@ -24,7 +24,7 @@ namespace YeniEmlak.Models.ViewModel
             return new PhoneNumber
             {
                 Id = vm.Id,
-                IdUser = vm.IdUser,
+                UserId = vm.UserId,
                 Number = vm.Number,
                 User = UserViewModel.MapUserViewModelToUser(vm.User)
 
@@ -35,7 +35,7 @@ namespace YeniEmlak.Models.ViewModel
             return new PhoneNumberViewModel
             {
                 Id = pn.Id,
-                IdUser = pn.Id,
+                UserId = pn.UserId,
                 Number = pn.Number,
                 User = UserViewModel.MapUserToUserViewModel(pn.User)
             };

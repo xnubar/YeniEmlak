@@ -87,7 +87,9 @@
                                         <tr id="searchResult">
                                             @{Html.RenderPartial("SearchResult", Model);}
                                         </tr>
-                                        <tr class="pages" style="display:none"></tr>
+                                        <tr class="pages">
+                                            @{Html.RenderPartial("Pagination", Model);}
+                                        </tr>
                                     </tbody>
                                 </table>
                             </td>
@@ -103,6 +105,7 @@
     <script type="text/javascript">
 
         $(function (e) {
+
             $("#form").submit(function (e) {
 
                 e.preventDefault();
@@ -115,6 +118,18 @@
                         $("#searchResult").html(response);
                     }
                 });
+            });
+            $("#new-movie-list").on("click", '.page-next', function (e) {
+                e.preventDefault();
+                var next = $("#Next").val();
+                var page = next;
+                ajaxPagingNewMovies(page);
+            });
+            $("#new-movie-list").on("click", '.page-preview', function (e) {
+                e.preventDefault();
+                var preview = $("#Preview").val();
+                var page = preview;
+                ajaxPagingNewMovies(page);
             });
         });
     </script>

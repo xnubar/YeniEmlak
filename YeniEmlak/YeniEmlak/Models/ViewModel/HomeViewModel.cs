@@ -17,8 +17,8 @@ namespace YeniEmlak.ViewModel
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        //public int UserId { get; set; }
-
+        public string UserId { get; set; }
+        public UserViewModel User { get; set; }
         public EstateDocumentType? EstateDocumentType { get; set; }
 
         public CityViewModel City { get; set; }
@@ -43,7 +43,7 @@ namespace YeniEmlak.ViewModel
         public AdverTypeViewModel AdverType { get; set; }
         [Required(ErrorMessage = "Elanın növünü daxil edin.")]
         public int AdverTypeId { get; set; }
-     
+
         public BuildingType BuildingType { get; set; }
 
         public int RoomCount { get; set; }
@@ -77,7 +77,7 @@ namespace YeniEmlak.ViewModel
             return new HomeViewModel
             {
                 Id = home.Id,
-                //UserId =home.UserId,
+                UserId = home.UserId,
                 CityId = home.CityId,
                 TotalStairCount = home.TotalStairCount,
                 Stair = home.Stair,
@@ -93,10 +93,11 @@ namespace YeniEmlak.ViewModel
                 EstateDocumentType = home.EstateDocumentType,
                 AdverTypeId = home.AdverTypeId,
                 AboutHome = home.AboutHome,
-                City =CityViewModel.MapCityToCityViewModel(home.City),
+                City = CityViewModel.MapCityToCityViewModel(home.City),
+                User = UserViewModel.MapUserToUserViewModel(home.User),
                 HomeType = HomeTypeViewModel.MapHomeTypeToHomeTypeViewModel(home.HomeType),
                 AdverType = AdverTypeViewModel.MapAdverTypeToAdverTypeViewModel(home.AdverType)
-              //  Equipments = home.Equipments.Select(x => EquipmentOfHomeViewModel.MapEquipmentOfHomeToEquipmentOfHomeViewModel(x)).ToList()
+                //  Equipments = home.Equipments.Select(x => EquipmentOfHomeViewModel.MapEquipmentOfHomeToEquipmentOfHomeViewModel(x)).ToList()
 
             };
         }
@@ -106,7 +107,7 @@ namespace YeniEmlak.ViewModel
             return new Home
             {
                 Id = vm.Id,
-                //UserId = vm.UserId,              
+                UserId = vm.UserId,
                 CityId = vm.CityId,
                 TotalStairCount = vm.TotalStairCount,
                 Stair = vm.Stair,
@@ -122,10 +123,7 @@ namespace YeniEmlak.ViewModel
                 Price = vm.Price,
                 AdverTypeId = vm.AdverTypeId,
                 AboutHome = vm.AboutHome
-                //City = CityViewModel.MapCityViewModelToCity(vm.City),
-                //HomeType = HomeTypeViewModel.MapHomeTypeViewModelToHomeType(vm.HomeType),
-                //AdverType = AdverTypeViewModel.MapAdverTypeViewModelToAdverType(vm.AdverType),
-               // Equipments = vm.Equipments.Select(x => EquipmentOfHomeViewModel.MapEquipmentOfHomeViewModelToEquipmentOfHome(x)).ToList()
+                // Equipments = vm.Equipments.Select(x => EquipmentOfHomeViewModel.MapEquipmentOfHomeViewModelToEquipmentOfHome(x)).ToList()
             };
         }
     }

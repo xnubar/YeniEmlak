@@ -46,6 +46,7 @@ namespace YeniEmlak.Controllers
             filterModel.HomeTypes = homeRepo.HomeTypes.Select(x => HomeTypeViewModel.MapHomeTypeToHomeTypeViewModel(x)).ToList();
             filterModel.AdverTypes = homeRepo.AdverTypes.Select(x => AdverTypeViewModel.MapAdverTypeToAdverTypeViewModel(x)).ToList();
             model.FilterParams = filterModel;
+            model.PageInfo = new PagingInfo();
             return View("Index", model);
         }
         public IActionResult GetImage(string fileName)
@@ -79,11 +80,14 @@ namespace YeniEmlak.Controllers
         [HttpPost]
         public IActionResult GetSearchResult(HomesListViewModel filtering, int pageNo = 1)
         {
+
+
             filtering.Homes = homeRepo.GetByFilterParams(filtering.FilterParams).
                                        Select(x => HomeViewModel.MapHomeToHomeViewModel(x)).
                                        ToList();
-            //var homes = HomeList(filtering);
-            return PartialView("SearchResult", filtering);
+           
+            var homes = HomeList(filtering);
+            return PartialView("SearchResult", homes);
         }
 
         public HomesListViewModel HomeList(HomesListViewModel homes, int pageNo = 1)
@@ -92,12 +96,13 @@ namespace YeniEmlak.Controllers
             pageSize = 5;
             totalRecord = homes.Homes.Count();
             totalPage = (totalRecord / pageSize) + ((totalRecord % pageSize) > 0 ? 1 : 0);
+            PagingInfo paging = new PagingInfo { CurrentPage = pageNo, TotalPages = totalPage };
             return (new HomesListViewModel
             {
                 Homes = homes.Homes.OrderBy(x => x.Id).
                                                  Skip((pageNo - 1) * PageSize).
                                                    Take(pageSize).ToList(),
-                TotalPage = totalPage
+              PageInfo=paging
             });
         }
 
