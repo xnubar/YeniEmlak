@@ -89,7 +89,6 @@ namespace YeniEmlak.Models
 
                 throw;
             }
-
         }
         public List<Home> GetByFilterParams(FilteringParams filterParam)
         {

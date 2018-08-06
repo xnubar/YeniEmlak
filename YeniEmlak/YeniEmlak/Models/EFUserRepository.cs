@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,17 +19,54 @@ namespace YeniEmlak.Models
 
         public void Create(UserViewModel vm)
         {
-            
+            try
+            {
+                if (vm == null)
+                {
+                    throw new ArgumentNullException("Home View Model");
+                }
+                context.Users.Add(UserViewModel.MapUserViewModelToUser(vm));
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void Delete(UserViewModel vm)
         {
-            
+            try
+            {
+                if (vm == null)
+                {
+                    throw new ArgumentNullException("User View Model");
+                }
+                context.Users.Remove(UserViewModel.MapUserViewModelToUser(vm));
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void Update(UserViewModel vm)
         {
-            
+            try
+            {
+                if (vm == null)
+                {
+                    throw new ArgumentNullException("Home View Model");
+                }
+                context.Entry(UserViewModel.MapUserViewModelToUser(vm)).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using YeniEmlak.Models;
 using YeniEmlak.Models.ViewModel;
 using Microsoft.AspNetCore.Identity;
+using YeniEmlak.DomainModel;
+
 namespace YeniEmlak
 {
     public class Startup
@@ -28,7 +30,7 @@ namespace YeniEmlak
 options.UseSqlServer(Configuration["Data:YeniEmlak:ConnectionString"]));
             services.AddDbContext<AppIdentityDbContext>(options =>
 options.UseSqlServer(Configuration["Data:UserIdentity:ConnectionString"]));
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
  .AddEntityFrameworkStores<AppIdentityDbContext>()
  .AddDefaultTokenProviders();
             services.AddTransient<IHomeRepository, EFHomeRepository>();
@@ -53,11 +55,13 @@ options.UseSqlServer(Configuration["Data:UserIdentity:ConnectionString"]));
 
             app.UseMvc(routes =>
             {
+              //  routes.MapRoute(name: "Account", template: "{controller=Account}/{action=Index}");
+  
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Index}/{id?}");
             });
-            //SeedData.EnsurePopulated(app);
+            SeedData.EnsurePopulated(app);
             //IdentitySeedData.EnsurePopulated(app);
         }
     }
