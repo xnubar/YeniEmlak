@@ -97,7 +97,7 @@ namespace YeniEmlak.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    AdverOwnerId = table.Column<int>(nullable: false),
+                    AdverOwnerId = table.Column<int>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
@@ -121,7 +121,7 @@ namespace YeniEmlak.Migrations
                         column: x => x.AdverOwnerId,
                         principalTable: "AdverOwners",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

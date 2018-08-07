@@ -12,10 +12,9 @@ namespace YeniEmlak.DomainModel
     {
         public string Name { get; set; }
         [ForeignKey("AdverOwner")]
-        public int AdverOwnerId { get; set; }
+        public int? AdverOwnerId { get; set; }
         public virtual AdverOwner AdverOwner { get; set; }
         public virtual ICollection<Home> Homes { get; set; }
-        public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
-       
+        public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }    
     }
 }

@@ -117,7 +117,7 @@ namespace YeniEmlak.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<int>("AdverOwnerId");
+                    b.Property<int?>("AdverOwnerId");
 
                     b.Property<string>("ConcurrencyStamp");
 
@@ -261,8 +261,7 @@ namespace YeniEmlak.Migrations
                 {
                     b.HasOne("YeniEmlak.Models.DomainModel.AdverOwner", "AdverOwner")
                         .WithMany("Users")
-                        .HasForeignKey("AdverOwnerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AdverOwnerId");
                 });
 
             modelBuilder.Entity("YeniEmlak.Models.DomainModel.EquipmentOfHome", b =>

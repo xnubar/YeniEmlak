@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YeniEmlak.Models;
+using YeniEmlak.Models.ViewModel;
 
 namespace YeniEmlak.Controllers
 {
@@ -18,7 +19,7 @@ namespace YeniEmlak.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View("AdminPage");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace YeniEmlak.Models.ViewModel
         [Required]
         public string Name { get; set; }
         public virtual AdverOwnerViewModel AdverOwner { get; set; }
-        public int AdverOwnerId { get; set; }
+        public int? AdverOwnerId { get; set; }
         public virtual ICollection<Home> Homes { get; set; }
         [Required]
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }

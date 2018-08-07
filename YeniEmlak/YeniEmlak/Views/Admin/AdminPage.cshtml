@@ -1,0 +1,28 @@
+﻿@model YeniEmlak.Models.ViewModel.LoginViewModel;
+@{
+    ViewData["Title"] = "AdminPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/css/adminPage.css">
+}
+
+@*<script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js">
+    </script>*@
+
+<div class="bg-info p-2 row">
+
+        <div class="col-2">
+            <a class="btn btn-sm btn-primary"
+               asp-action="Logout" asp-controller="Account">Log Out</a>
+        </div>
+    </div>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success mt-1">@TempData["message"]</div>
+    }
+
+
+

@@ -55,14 +55,15 @@ options.UseSqlServer(Configuration["Data:UserIdentity:ConnectionString"]));
 
             app.UseMvc(routes =>
             {
-              //  routes.MapRoute(name: "Account", template: "{controller=Account}/{action=Index}");
-  
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Account}/{action=Index}/{id?}");
+                   name: "default",
+                   template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "Account", template: "{controller=Account}/{action=Index}/{id?}");
+                routes.MapRoute(name: "Admin", template: "{controller=Admin}/{action=Index}/{id?}");
+
             });
             SeedData.EnsurePopulated(app);
-            //IdentitySeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

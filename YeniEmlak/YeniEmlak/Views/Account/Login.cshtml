@@ -3,22 +3,42 @@
     ViewData["Title"] = "Daxil ol";
 }
 <link rel="stylesheet" type="text/css" href="~/css/login.css">
+<table class="tableContent">
+    <tbody>
+        <tr>
+            <td valign="top" style="padding: 0px 10px 0px 10px; min-height:2000px;" >
+                <table align="center" cellpadding="0" cellspacing="0"  >
+                    <tbody>
+                        <tr>
+                            <td class="inner_table" >
+                                <form asp-action="Login" asp-controller="Account" method="post" class="form">
+                                    <div class="text-danger" asp-validation-summary="All"></div>
 
-<div class="text-danger" asp-validation-summary="All"></div>
-<form asp-action="Login" asp-controller="Account" method="post" class="form">
-    <h1>İstifadəçi girişi</h1>
-    @*<input type="hidden" asp-for="ReturnUrl" />*@
+                                    <h1>İstifadəçi girişi</h1>
+                                    <input type="hidden" asp-for="ReturnUrl" />
 
-    <div class="form-group">
-        <span>Username :</span>
-        <input type="text" asp-for="Name">
-        <div><span asp-validation-for="Name" class="text-danger"></span></div>
-    </div>
-    <div class="form-group">
-        <span>Şifrə :</span>
-        <div><span asp-validation-for="Password" class="text-danger"></span></div>
-        <input asp-for="Password" class="form-control" />
-    </div>
-    <button class="btn btn-primary" type="submit">Log In</button>
-</form>
+                                    <div class="form-group">
+                                        <span>İstifadəçi adı :</span>
+                                        <input type="text" asp-for="Name">
+                                        <div><span asp-validation-for="Name" class="text-danger"></span></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Şifrə :</span>
+                                        <input type="text" asp-for="Password">
+                                        <div><span asp-validation-for="Password" class="text-danger"></span></div>
+                                    </div>
+
+                                    <div align="center">
+                                        <button type="submit">Daxil ol</button>
+                                    </div>
+
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </tr>
+    </tbody>
+</table>
+
 

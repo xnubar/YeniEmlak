@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace YeniEmlak.Migrations.AppIdentityDb
 {
-    public partial class SecondModel : Migration
+    public partial class Secondmodel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -96,7 +96,7 @@ namespace YeniEmlak.Migrations.AppIdentityDb
                 {
                     Id = table.Column<string>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    AdverOwnerId = table.Column<int>(nullable: false),
+                    AdverOwnerId = table.Column<int>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
@@ -120,7 +120,7 @@ namespace YeniEmlak.Migrations.AppIdentityDb
                         column: x => x.AdverOwnerId,
                         principalTable: "AdverOwner",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
