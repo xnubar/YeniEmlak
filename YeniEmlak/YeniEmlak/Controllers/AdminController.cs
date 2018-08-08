@@ -19,7 +19,10 @@ namespace YeniEmlak.Controllers
         }
         public IActionResult Index()
         {
-            return View("AdminPage");
+            var myView = View();
+            myView.ViewName = "~/Views/Shared/_AdminLayout.cshtml";
+            return myView;
+
         }
     }
 }

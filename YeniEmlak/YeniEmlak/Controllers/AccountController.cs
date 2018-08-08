@@ -19,18 +19,9 @@ namespace YeniEmlak.Controllers
         public IActionResult Index()
         {
             var model = new LoginViewModel();
-
             return View("Login",model);
         }
 
-        [AllowAnonymous]
-        public ViewResult Login(string returnUrl)
-        {
-            return View(new LoginViewModel
-            {
-                ReturnUrl = returnUrl
-            });
-        }
         public AccountController(UserManager<User> userMgr,SignInManager<User> signInMgr)
         {
             userManager = userMgr;
@@ -51,7 +42,7 @@ namespace YeniEmlak.Controllers
                    if ((await signInManager.PasswordSignInAsync(user,
  login.Password, false, false)).Succeeded)
                     {
-                        //return Redirect(login?.ReturnUrl ?? "/Admin/Index");
+                      
                         return RedirectToAction("Index","Admin");
                     }
                 }

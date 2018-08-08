@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Daxil ol";
 }
-<link rel="stylesheet" type="text/css" href="~/css/login.css">
+<link rel="stylesheet" type="text/css" href="~/css/login.css" asp-append-version="true">
 <table class="tableContent">
     <tbody>
         <tr>
@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="form-group">
                                         <span>Şifrə :</span>
-                                        <input type="text" asp-for="Password">
+                                        <input type="password" asp-for="Password" >
                                         <div><span asp-validation-for="Password" class="text-danger"></span></div>
                                     </div>
 
