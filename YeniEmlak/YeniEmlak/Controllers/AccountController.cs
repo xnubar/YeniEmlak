@@ -21,6 +21,33 @@ namespace YeniEmlak.Controllers
             var model = new LoginViewModel();
             return View("Login",model);
         }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var model = new RegisterViewModel();
+            return View("CreateAccount", model);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = UserViewModel.MapUserViewModelToUser(RegisterViewModel.MapRegisterViewModelToUserViewModel(model));
+
+            var result = await this.userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(model);
+
+        }
+
 
         public AccountController(UserManager<User> userMgr,SignInManager<User> signInMgr)
         {

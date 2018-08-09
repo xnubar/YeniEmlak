@@ -33,23 +33,6 @@ namespace YeniEmlak.Controllers
             return View("AdminPage", "~/Views/Shared/_AdminLayout.cshtml");
 
         }
-      
-        public async Task<IActionResult> Create(RegisterViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-
-            var user =UserViewModel.MapUserViewModelToUser( RegisterViewModel.MapRegisterViewModelToUserViewModel(model));
-
-            var result = await this.userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
-            {                
-
-                return View("Index", "~/Views/Shared/_Layout.cshtml");
-            }
-
-            return View(model);
-
-        }
+    
     }
 }
