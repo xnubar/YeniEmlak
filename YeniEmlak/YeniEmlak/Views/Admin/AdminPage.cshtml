@@ -1,116 +1,14 @@
-﻿@*@model YeniEmlak.Models.ViewModel.LoginViewModel;
+﻿
     @{
         ViewData["Title"] = "AdminPage";
-        Layout = "~/Views/Shared/_Layout.cshtml";
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
     }
-    @section styles{
+    @*@section styles{
         <link rel="stylesheet" type="text/css" href="~/css/adminPage.css" asp-append-version="true">
     }*@
 
 
-<!DOCTYPE html>
-<html lang="en" class="no-js">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Level Push Menu - Demo 1</title>
-    <meta name="description" content="Multi-Level Push Menu: Off-screen navigation with multiple levels" />
-    <meta name="keywords" content="multi-level, menu, navigation, off-canvas, off-screen, mobile, levels, nested, transform" />
-    <meta name="author" content="Codrops" />
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="css/icons.css" />
-    <link rel="stylesheet" type="text/css" href="css/component.css" />
-    <script src="js/modernizr.custom.js"></script>
-</head>
-<body>
-    <div class="container">
-        <!-- Push Wrapper -->
-        <div class="mp-pusher" id="mp-pusher">
-
-            <!-- mp-menu -->
-            <nav id="mp-menu" class="mp-menu">
-                <div class="mp-level">
-                    <h2 class="icon icon-world">Admin</h2>
-                    <ul>
-                        <li class="icon icon-arrow-left">
-                            <a class="icon icon-display" href="#">İstifadəçi</a>
-                            <div class="mp-level">
-                                <h2 class="icon icon-display">İstifadəçi</h2>
-                                <ul>
-                                    <li class="icon icon-arrow-left">
-                                        <a class="icon icon-phone" href="#">Əlavə et</a>
-                                    </li>
-                                    <li class="icon icon-arrow-left">
-                                        <a class="icon icon-tv" href="#">Dəyişikliklər</a>
-                                    </li>
-                                    <li class="icon icon-arrow-left">
-                                        <a class="icon icon-tv" href="#">Sil</a>
-                                    </li>
-                                    <li class="icon icon-arrow-left">
-                                        <a class="icon icon-camera" href="#">Siyahı</a>                                       
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="icon icon-arrow-left">
-                            <a class="icon icon-news" href="#">Əmlak</a>
-                            <div class="mp-level">
-                                <h2 class="icon icon-news">Əmlak</h2>
-                                <ul>
-                                    <li class="icon icon-arrow-left">
-                                        <a class="icon icon-phone" href="#">Əlavə et</a>
-                                    </li>
-                                    <li class="icon icon-arrow-left">
-                                        <a class="icon icon-tv" href="#">Dəyişikliklər</a>
-                                    </li>
-                                    <li class="icon icon-arrow-left">
-                                        <a class="icon icon-tv" href="#">Sil</a>
-                                    </li>
-                                    <li class="icon icon-arrow-left">
-                                        <a class="icon icon-camera" href="#">Siyahı</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                      
-                    </ul>
-                </div>
-            </nav>
-            <!-- /mp-menu -->
-
-            <div class="scroller">
-                <!-- this is for emulating position fixed of the nav -->
-                <div class="scroller-inner">
-                    <!-- Top Navigation -->
-                    <div class="codrops-top clearfix">
-                        <a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Tutorials/CircularNavigation/"><span>Previous Demo</span></a>
-                        <span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16252"><span>Back to the Codrops Article</span></a></span>
-                    </div>                   
-                    <div class="content clearfix">
-                        <div class="block block-40 clearfix">
-                            <p><a href="#" id="trigger" class="menu-trigger"></a></p>                           
-                        </div>
-                       
-                    </div>
-                </div><!-- /scroller-inner -->
-            </div><!-- /scroller -->
-
-        </div><!-- /pusher -->
-    </div><!-- /container -->
-    <script src="js/classie.js"></script>
-    <script src="js/mlpushmenu.js"></script>
-    <script>
-        new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'));
-    </script>
-</body>
-</html>
-
-
-
-
+<h2>Hi</h2>
 
 @*<div class="bg-info p-2 row">
 

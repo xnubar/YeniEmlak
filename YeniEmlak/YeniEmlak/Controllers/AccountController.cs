@@ -42,8 +42,9 @@ namespace YeniEmlak.Controllers
                    if ((await signInManager.PasswordSignInAsync(user,
  login.Password, false, false)).Succeeded)
                     {
-                      
-                        return RedirectToAction("Index","Admin");
+
+                        
+                            return RedirectToAction("Index","Admin");
                     }
                 }
             }

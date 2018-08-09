@@ -19,9 +19,8 @@ namespace YeniEmlak.Controllers
         }
         public IActionResult Index()
         {
-            var myView = View();
-            myView.ViewName = "~/Views/Shared/_AdminLayout.cshtml";
-            return myView;
+            var model = new LoginViewModel();
+            return View("AdminPage", "~/Views/Shared/_AdminLayout.cshtml");
 
         }
     }

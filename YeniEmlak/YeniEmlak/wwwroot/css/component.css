@@ -1,4 +1,4 @@
-*,
+﻿*,
 *:after,
 *::before {
     -webkit-box-sizing: border-box;
@@ -6,292 +6,325 @@
     box-sizing: border-box;
 }
 
-html, body, .container, .scroller {
-	height: 100%;
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: 'ecoicons';
+    src: url("../fonts/ecoicons/ecoicons.eot");
+    src: url("../fonts/ecoicons/ecoicons.eot?#iefix") format("embedded-opentype"), url("../fonts/ecoicons/ecoicons.woff") format("woff"), url("../fonts/ecoicons/ecoicons.ttf") format("truetype"), url("../fonts/ecoicons/ecoicons.svg#ecoicons") format("svg");
 }
 
-.scroller {
-	overflow-y: scroll;
+/* Icomoon.com */
+
+.gn-menu-main,
+.gn-menu-main ul {
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: #5f6f81;
+    list-style: none;
+    text-transform: none;
+    font-weight: 300;
+    font-family: 'Lato', Arial, sans-serif;
+    line-height: 60px;
 }
 
-.scroller,
-.scroller-inner {
-	position: relative;
+.gn-menu-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    font-size: 13px;
 }
 
-.container {
-	position: relative;
-	overflow: hidden;
-	background: #34495e;
+    .gn-menu-main a {
+        display: block;
+        height: 100%;
+        color: #5f6f81;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.no-touch .gn-menu-main a:hover,
+.no-touch .gn-menu li.gn-search-item:hover,
+.no-touch .gn-menu li.gn-search-item:hover a {
+    background: #5f6f81;
+    color: white;
 }
 
-.menu-trigger {
-	position: relative;
-	padding-left: 60px;
-	font-size: 0.9em;
+.gn-menu-main > li {
+    display: block;
+    float: left;
+    height: 100%;
+    border-right: 1px solid #c6d0da;
+    text-align: center;
 }
 
-.menu-trigger:before {
-	position: absolute;
-	top: 2px;
-	left: 0;
-	width: 40px;
-	height: 6px;
-	background: #fff;
-	box-shadow: 0 6px #34495e, 0 12px #fff, 0 18px #34495e, 0 24px #fff;
-	content: '';
+/* icon-only trigger (menu item) */
+
+.gn-menu-main li.gn-trigger {
+    position: relative;
+    width: 60px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.mp-pusher {
-	position: relative;
-	left: 0;
-	height: 100%;
+.gn-menu-main > li:last-child {
+    float: right;
+    border-right: none;
+    border-left: 1px solid #c6d0da;
 }
 
-.mp-menu {
-	position: absolute; /* we can't use fixed here :( */
-	top: 0;
-	left: 0;
-	z-index: 1;
-	width: 300px;
-	height: 100%;
-	-webkit-transform: translate3d(-100%, 0, 0);
-	-moz-transform: translate3d(-100%, 0, 0);
-	transform: translate3d(-100%, 0, 0);
+.gn-menu-main > li > a {
+    padding: 0 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
 }
 
-.mp-level {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #336ca6;
-	-webkit-transform: translate3d(-100%, 0, 0);
-	-moz-transform: translate3d(-100%, 0, 0);
-	transform: translate3d(-100%, 0, 0);
+.gn-menu-main:after {
+    display: table;
+    clear: both;
+    content: "";
 }
 
-/* overlays for pusher and for level that gets covered */
-.mp-pusher::after,
-.mp-level::after,
-.mp-level::before {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 0;
-	height: 0;
-	content: '';
-	opacity: 0;
+.gn-menu-wrapper {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 60px;
+    border-top: 1px solid #c6d0da;
+    background: white;
+    -webkit-transform: translateX(-60px);
+    -moz-transform: translateX(-60px);
+    transform: translateX(-60px);
+    -webkit-transition: -webkit-transform 0.3s, width 0.3s;
+    -moz-transition: -moz-transform 0.3s, width 0.3s;
+    transition: transform 0.3s, width 0.3s;
 }
 
-.mp-pusher::after,
-.mp-level::after {
-	background: rgba(0,0,0,0.3);
-	-webkit-transition: opacity 0.3s, width 0.1s 0.3s, height 0.1s 0.3s;
-	-moz-transition: opacity 0.3s, width 0.1s 0.3s, height 0.1s 0.3s;
-	transition: opacity 0.3s, width 0.1s 0.3s, height 0.1s 0.3s;
+.gn-scroller {
+    position: absolute;
+    overflow-y: scroll;
+    width: 370px;
+    height: 100%;
 }
 
-.mp-level::after {
-	z-index: -1;
+.gn-menu {
+    border-bottom: 1px solid #c6d0da;
+    text-align: left;
+    font-size: 18px;
 }
 
-.mp-pusher.mp-pushed::after,
-.mp-level.mp-level-overlay::after {
-	width: 100%;
-	height: 100%;
-	opacity: 1;
-	-webkit-transition: opacity 0.3s;
-	-moz-transition: opacity 0.3s;
-	transition: opacity 0.3s;
+    .gn-menu li:not(:first-child),
+    .gn-menu li li {
+        box-shadow: inset 0 1px #c6d0da
+    }
+
+.gn-submenu li {
+    overflow: hidden;
+    height: 0;
+    -webkit-transition: height 0.3s;
+    -moz-transition: height 0.3s;
+    transition: height 0.3s;
 }
 
-.mp-level.mp-level-overlay {
-	cursor: pointer;
+    .gn-submenu li a {
+        color: #c1c9d1
+    }
+
+input.gn-search {
+    position: relative;
+    z-index: 10;
+    padding-left: 60px;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: #5f6f81;
+    font-weight: 300;
+    font-family: 'Lato', Arial, sans-serif;
+    cursor: pointer;
 }
 
-.mp-level.mp-level-overlay.mp-level::before {
-	width: 100%;
-	height: 100%;
-	background: transparent;
-	opacity: 1;
+/* placeholder */
+
+.gn-search::-webkit-input-placeholder {
+    color: #5f6f81
 }
 
-.mp-pusher,
-.mp-level {
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	transition: all 0.5s;
+.gn-search:-moz-placeholder {
+    color: #5f6f81
 }
 
-/* overlap */
-.mp-overlap .mp-level.mp-level-open {
-	box-shadow: 1px 0 2px rgba(0,0,0,0.2);
-	-webkit-transform: translate3d(-40px, 0, 0);
-	-moz-transform: translate3d(-40px, 0, 0);
-	transform: translate3d(-40px, 0, 0);
+.gn-search::-moz-placeholder {
+    color: #5f6f81
 }
 
-/* First level */
-.mp-menu > .mp-level,
-.mp-menu > .mp-level.mp-level-open,
-.mp-menu.mp-overlap > .mp-level,
-.mp-menu.mp-overlap > .mp-level.mp-level-open {
-	box-shadow: none;
-	-webkit-transform: translate3d(0, 0, 0);
-	-moz-transform: translate3d(0, 0, 0);
-	transform: translate3d(0, 0, 0);
+.gn-search:-ms-input-placeholder {
+    color: #5f6f81
 }
 
-/* cover */
-.mp-cover .mp-level.mp-level-open {
-	-webkit-transform: translate3d(0, 0, 0);
-	-moz-transform: translate3d(0, 0, 0);
-	transform: translate3d(0, 0, 0);
+/* hide placeholder when active in Chrome */
+
+.gn-search:focus::-webkit-input-placeholder,
+.no-touch .gn-menu li.gn-search-item:hover .gn-search:focus::-webkit-input-placeholder {
+    color: transparent
 }
 
-.mp-cover .mp-level.mp-level-open > ul > li > .mp-level:not(.mp-level-open) {
-	-webkit-transform: translate3d(-100%, 0, 0);
-	-moz-transform: translate3d(-100%, 0, 0);
-	transform: translate3d(-100%, 0, 0);
+input.gn-search:focus {
+    cursor: text
 }
 
-/* content style */
-.mp-menu ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+.no-touch .gn-menu li.gn-search-item:hover input.gn-search {
+    color: white
 }
 
-.mp-menu h2 {
-	margin: 0;
-	padding: 1em;
-	color: rgba(0,0,0,0.4);
-	text-shadow: 0 0 1px rgba(0,0,0,0.1);
-	font-weight: 300;
-	font-size: 2em;
+/* placeholder */
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search::-webkit-input-placeholder {
+    color: white
 }
 
-.mp-menu.mp-overlap h2::before {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin-right: 8px;
-	font-size: 75%;
-	line-height: 1.8;
-	opacity: 0;
-	-webkit-transition: opacity 0.3s, -webkit-transform 0.1s 0.3s;
-	-moz-transition: opacity 0.3s, -moz-transform 0.1s 0.3s;
-	transition: opacity 0.3s, transform 0.1s 0.3s;
-	-webkit-transform: translateX(-100%);
-	-moz-transform: translateX(-100%);
-	transform: translateX(-100%);
+.no-touch .gn-menu li.gn-search-item:hover .gn-search:-moz-placeholder {
+    color: white
 }
 
-.mp-menu.mp-cover h2 {
-	text-transform: uppercase;
-	font-weight: 700;
-	letter-spacing: 1px;
-	font-size: 1em;
+.no-touch .gn-menu li.gn-search-item:hover .gn-search::-moz-placeholder {
+    color: white
 }
 
-.mp-overlap .mp-level.mp-level-overlay > h2::before {
-	opacity: 1;
-	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
-	-moz-transition: -moz-transform 0.3s, opacity 0.3s;
-	transition: transform 0.3s, opacity 0.3s;
-	-webkit-transform: translateX(0);
-	-moz-transform: translateX(0);
-	transform: translateX(0);
+.no-touch .gn-menu li.gn-search-item:hover .gn-search:-ms-input-placeholder {
+    color: white
 }
 
-.mp-menu ul li > a {
-	display: block;
-	padding: 0.7em 1em 0.7em 1.8em;
-	outline: none;
-	box-shadow: inset 0 -1px rgba(0,0,0,0.2);
-	text-shadow: 0 0 1px rgba(255,255,255,0.1);
-	font-size: 1.4em;
-	-webkit-transition: background 0.3s, box-shadow 0.3s;
-	-moz-transition: background 0.3s, box-shadow 0.3s;
-	transition: background 0.3s, box-shadow 0.3s;
+.gn-menu-main a.gn-icon-search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
 }
 
-.mp-menu ul li::before {
-	position: absolute;
-	left: 10px;
-	z-index: -1;
-	color: rgba(0,0,0,0.2);
-	line-height: 3.5;
+.gn-icon::before {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    text-transform: none;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-family: 'ecoicons';
+    line-height: 1;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
 }
 
-.mp-level > ul > li:first-child > a {
-	box-shadow: inset 0 -1px rgba(0,0,0,0.2), inset 0 1px rgba(0,0,0,0.2);
+.gn-icon-help::before {
+    content: "\e000"
 }
 
-.mp-menu ul li a:hover,
-.mp-level > ul > li:first-child > a:hover {
-	background: rgba(0,0,0,0.2);
-	box-shadow: inset 0 -1px rgba(0,0,0,0);
+.gn-icon-earth::before {
+    content: "\e004"
 }
 
-.mp-menu .mp-level.mp-level-overlay > ul > li > a,
-.mp-level.mp-level-overlay > ul > li:first-child > a {
-	box-shadow: inset 0 -1px rgba(0,0,0,0);
+.gn-icon-cog::before {
+    content: "\e006"
 }
 
-.mp-level > ul > li:first-child > a:hover,
-.mp-level.mp-level-overlay > ul > li:first-child > a {
-	box-shadow: inset 0 -1px rgba(0,0,0,0), inset 0 1px rgba(0,0,0,0);
-} /* seems like Chrome 34.0.1847.131 needs the second shadow otherwise the transition breaks */
-
-.mp-back {
-	background: rgba(0,0,0,0.1);
-	outline: none;
-	color: #fff;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 700;
-	display: block;
-	font-size: 0.8em;
-	padding: 1em;
-	position: relative;
-	box-shadow: inset 0 1px rgba(0,0,0,0.1);
-	-webkit-transition: background 0.3s;
-	-moz-transition: background 0.3s;
-	transition: background 0.3s;
+.gn-icon-search::before {
+    content: "\e005"
 }
 
-.mp-back::after {
-	font-family: 'linecons';
-	position: absolute;
-	content: "\e037";
-	right: 10px;
-	font-size: 1.3em;
-	color: rgba(0,0,0,0.3);
+.gn-icon-download::before {
+    content: "\e007"
 }
 
-.mp-menu .mp-level.mp-level-overlay > .mp-back,
-.mp-menu .mp-level.mp-level-overlay > .mp-back::after {
-	background: transparent;
-	box-shadow: none;
-	color: transparent;
+.gn-icon-photoshop::before {
+    content: "\e001"
 }
 
-/* Fallback example for browsers that don't support 3D transforms (and no JS fallback) */
-/* We'll show the first level only */
-.no-csstransforms3d .mp-pusher,
-.no-js .mp-pusher {
-	padding-left: 300px;
+.gn-icon-illustrator::before {
+    content: "\e002"
 }
 
-.no-csstransforms3d .mp-menu .mp-level,
-.no-js .mp-menu .mp-level {
-	display: none;
+.gn-icon-archive::before {
+    content: "\e00d"
 }
 
-.no-csstransforms3d .mp-menu > .mp-level,
-.no-js .mp-menu > .mp-level {
-	display: block;
+.gn-icon-article::before {
+    content: "\e003"
+}
+
+.gn-icon-pictures::before {
+    content: "\e008"
+}
+
+.gn-icon-videos::before {
+    content: "\e009"
+}
+
+/* if an icon anchor has a span, hide the span */
+
+.gn-icon span {
+    width: 0;
+    height: 0;
+    display: block;
+    overflow: hidden;
+}
+
+.gn-icon-menu::before {
+    margin-left: -15px;
+    vertical-align: -2px;
+    width: 30px;
+    height: 3px;
+    background: #5f6f81;
+    box-shadow: 0 3px white, 0 -6px #5f6f81, 0 -9px white, 0 -12px #5f6f81;
+    content: '';
+}
+
+.no-touch .gn-icon-menu:hover::before,
+.no-touch .gn-icon-menu.gn-selected:hover::before {
+    background: white;
+    box-shadow: 0 3px #5f6f81, 0 -6px white, 0 -9px #5f6f81, 0 -12px white;
+}
+
+.gn-icon-menu.gn-selected::before {
+    background: #5993cd;
+    box-shadow: 0 3px white, 0 -6px #5993cd, 0 -9px white, 0 -12px #5993cd;
+}
+
+/* styles for opening menu */
+
+.gn-menu-wrapper.gn-open-all,
+.gn-menu-wrapper.gn-open-part {
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+.gn-menu-wrapper.gn-open-all {
+    width: 340px
+}
+
+    .gn-menu-wrapper.gn-open-all .gn-submenu li {
+        height: 60px
+    }
+
+@media screen and (max-width: 422px) {
+    .gn-menu-wrapper.gn-open-all {
+        -webkit-transform: translateX(0px);
+        -moz-transform: translateX(0px);
+        transform: translateX(0px);
+        width: 100%;
+    }
+
+        .gn-menu-wrapper.gn-open-all .gn-scroller {
+            width: 130%
+        }
 }
