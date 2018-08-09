@@ -66,12 +66,16 @@ namespace YeniEmlak.Controllers
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
-                   if ((await signInManager.PasswordSignInAsync(user,
- login.Password, false, false)).Succeeded)
+                   if ((await signInManager.PasswordSignInAsync(user, login.Password, false, false)).Succeeded)
                     {
+                        if (true)
+                        {
+                            //admin role
 
+                            return RedirectToAction("Index", "Admin");
+                        }
                         
-                            return RedirectToAction("Index","Admin");
+                            
                     }
                 }
             }

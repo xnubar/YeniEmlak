@@ -31,7 +31,6 @@ namespace YeniEmlak.Controllers
         {
             var model = new LoginViewModel();
             return View("AdminPage", "~/Views/Shared/_AdminLayout.cshtml");
-
         }
     
     }
