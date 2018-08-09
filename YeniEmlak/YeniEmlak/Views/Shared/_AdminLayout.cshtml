@@ -22,38 +22,38 @@
                 <nav class="gn-menu-wrapper">
                     <div class="gn-scroller">
                         <ul class="gn-menu">
-                            <li class="gn-search-item">
+                            @*<li class="gn-search-item">
                                 <input placeholder="Search" type="search" class="gn-search">
                                 <a class="gn-icon gn-icon-search"><span>Search</span></a>
-                            </li>
+                            </li>*@
                             <li>
-                                <a class="gn-icon gn-icon-download">Downloads</a>
+                                <a class="gn-icon gn-icon-download">İstifadəçi</a>
                                 <ul class="gn-submenu">
-                                    <li><a class="gn-icon gn-icon-illustrator">Vector Illustrations</a></li>
-                                    <li><a class="gn-icon gn-icon-photoshop">Photoshop files</a></li>
+                                    <li><a class="gn-icon gn-icon-illustrator">Siyahı</a></li>
+                                    <li><a class="gn-icon gn-icon-photoshop">Əlavə et</a></li>
+                                    <li><a class="gn-icon gn-icon-photoshop">Düzəliş et</a></li>
+                                    <li><a class="gn-icon gn-icon-photoshop">Sil</a></li>
                                 </ul>
                             </li>
-                            <li><a class="gn-icon gn-icon-cog">Settings</a></li>
-                            <li><a class="gn-icon gn-icon-help">Help</a></li>
                             <li>
-                                <a class="gn-icon gn-icon-archive">Archives</a>
+                                <a class="gn-icon gn-icon-cog">Əmlak</a>
                                 <ul class="gn-submenu">
-                                    <li><a class="gn-icon gn-icon-article">Articles</a></li>
-                                    <li><a class="gn-icon gn-icon-pictures">Images</a></li>
-                                    <li><a class="gn-icon gn-icon-videos">Videos</a></li>
+                                    <li><a class="gn-icon gn-icon-illustrator">Siyahı</a></li>
+                                    <li><a class="gn-icon gn-icon-photoshop">Əlavə et</a></li>
+                                    <li><a class="gn-icon gn-icon-photoshop">Düzəliş et</a></li>
+                                    <li><a class="gn-icon gn-icon-photoshop">Sil</a></li>
                                 </ul>
+
                             </li>
+                            @*<li><a class="gn-icon gn-icon-help" asp-controller="Account" asp-action="Logout">Çıxış</a></li>*@
+                           
                         </ul>
                     </div><!-- /gn-scroller -->
                 </nav>
             </li>
-            <li><a href="http://tympanus.net/codrops">Codrops</a></li>
-            <li><a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/HeaderEffects/"><span>Previous Demo</span></a></li>
-            <li><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16030"><span>Back to the Codrops Article</span></a></li>
+           
         </ul>
-        <header>
-            <h1>Google Nexus Website Menu <span>A sidebar menu as seen on the <a href="http://www.google.com/nexus/index.html">Google Nexus 7</a> page</span></h1>
-        </header>
+       
     </div><!-- /container -->
     <div>
         @RenderBody()
