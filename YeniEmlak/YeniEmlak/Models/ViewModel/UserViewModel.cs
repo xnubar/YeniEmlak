@@ -14,10 +14,14 @@ namespace YeniEmlak.Models.ViewModel
     {
        
         [Required]
-        public string Name { get; set; }
+        public string FullName { get; set; }
+
         public virtual AdverOwnerViewModel AdverOwner { get; set; }
         public int? AdverOwnerId { get; set; }
+
         public virtual ICollection<Home> Homes { get; set; }
+        public string Address { get; set; }
+        public bool SubmittedByAdmin { get; set; }
         [Required]
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
 
@@ -26,11 +30,14 @@ namespace YeniEmlak.Models.ViewModel
             return new User
             {
                 Id = vm.Id,
-                Name = vm.Name,
+                FullName = vm.FullName,
                 Email = vm.Email,
                 Homes = vm.Homes,
+                Address=vm.Address,
                 AdverOwnerId=vm.AdverOwnerId,
-                PhoneNumbers = vm.PhoneNumbers
+                PhoneNumbers = vm.PhoneNumbers,
+                SubmittedByAdmin=vm.SubmittedByAdmin,
+                UserName=vm.UserName
             };
 
         }
@@ -39,12 +46,15 @@ namespace YeniEmlak.Models.ViewModel
             return new UserViewModel
             {
                 Id = u.Id,
-                Name = u.Name,
+                FullName = u.FullName,
+                Address=u.Address,                
                 Email = u.Email,
                 Homes = u.Homes,
+                SubmittedByAdmin=u.SubmittedByAdmin,
                 AdverOwnerId=u.AdverOwnerId,
                 AdverOwner = AdverOwnerViewModel.MapAdverOwnerToAdverOwnerViewModel(u.AdverOwner),
-                PhoneNumbers = u.PhoneNumbers
+                PhoneNumbers = u.PhoneNumbers,
+                UserName=u.UserName
             };
 
         }

@@ -226,6 +226,8 @@ namespace YeniEmlak.Migrations.AppIdentityDb
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<string>("Address");
+
                     b.Property<int?>("AdverOwnerId");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -236,11 +238,11 @@ namespace YeniEmlak.Migrations.AppIdentityDb
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FullName");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -255,6 +257,8 @@ namespace YeniEmlak.Migrations.AppIdentityDb
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("SubmittedByAdmin");
 
                     b.Property<bool>("TwoFactorEnabled");
 

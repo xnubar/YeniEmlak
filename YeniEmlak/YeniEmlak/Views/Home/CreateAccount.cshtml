@@ -1,0 +1,68 @@
+﻿@model YeniEmlak.Models.ViewModel.RegisterViewModel;
+@{
+    ViewData["Title"] = "CreateAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/css/create_account.css" asp-append-version="true">
+<table class="tableContent">
+    <tbody>
+        <tr>
+            <td valign="top" style="padding: 0px 10px 0px 10px; min-height:2000px;">
+                <table align="center" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td class="inner_table">
+                                <form asp-action="Create" asp-controller="Admin" method="post" class="form" enctype="multipart/form-data">
+                                    <div class="text-danger" asp-validation-summary="All"></div>
+                                    <h1>Yeni istifadəçi</h1>
+                                    <div class="form-group">
+                                        <span>Ad :</span>
+                                        <input type="text" asp-for="FirstName">
+                                        <div><span asp-validation-for="FirstName" class="text-danger"></span></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Soyad :</span>
+                                        <input type="text" asp-for="LastName">
+                                        <div><span asp-validation-for="LastName" class="text-danger"></span></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>İstifadəçi adı :</span>
+                                        <input type="text" asp-for="UserName">
+                                        <div><span asp-validation-for="UserName" class="text-danger"></span></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Email :</span>
+                                        <input type="email" asp-for="Email">
+                                        <div><span asp-validation-for="Email" class="text-danger"></span></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Şifrə :</span>
+                                        <input type="password" asp-for="Password">
+                                        <div><span asp-validation-for="Password" class="text-danger"></span></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>Şifrə təsdiqi :</span>
+                                        <input type="password" asp-for="ConfirmPassword">
+                                        <div><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <span>Ünvan :</span>
+                                        <textarea type="text" asp-for="Address"></textarea>
+                                     
+                                    </div>
+
+                                    <div align="center">
+                                        <button type="submit">Qeydiyyatdan keç</button>
+                                    </div>
+
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </tr>
+    </tbody>
+</table>

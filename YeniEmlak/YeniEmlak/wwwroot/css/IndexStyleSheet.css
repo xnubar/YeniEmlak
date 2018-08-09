@@ -37,7 +37,7 @@ ul.dropdown li {
 
 ul.dropdown li.dropdown-top {
     display: inline;
-    float: left;
+    /*float: left;*/
     margin-right:20px;
 }
 

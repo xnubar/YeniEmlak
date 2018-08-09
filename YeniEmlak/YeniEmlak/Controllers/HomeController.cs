@@ -30,6 +30,13 @@ namespace YeniEmlak.Controllers
             appEnvironment = environment;
 
         }
+        public IActionResult CreateUser()
+        {
+            var model = new RegisterViewModel();
+            return View("CreateAccount", model);
+
+        }
+
         [HttpGet]
         public JsonResult GetDependentUIs(HomeViewModel home)
         {

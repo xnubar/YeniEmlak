@@ -18,6 +18,9 @@ namespace YeniEmlak.Models.ViewModel
         public string LastName { get; set; }
 
         [Required]
+        public string Address { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -28,5 +31,17 @@ namespace YeniEmlak.Models.ViewModel
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        public static UserViewModel MapRegisterViewModelToUserViewModel(RegisterViewModel model)
+        {
+            return new UserViewModel
+            {
+                FullName=model.FirstName+" "+model.LastName,
+                Email=model.Email,
+                Address=model.Address,
+                SubmittedByAdmin=false,
+                UserName=model.UserName
+            };
+        }
     }
 }

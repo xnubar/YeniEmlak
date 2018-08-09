@@ -10,9 +10,11 @@ namespace YeniEmlak.DomainModel
 {
     public class User:IdentityUser
     {
-        public string Name { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
         [ForeignKey("AdverOwner")]
         public int? AdverOwnerId { get; set; }
+        public bool SubmittedByAdmin { get; set; }
         public virtual AdverOwner AdverOwner { get; set; }
         public virtual ICollection<Home> Homes { get; set; }
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }    
