@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Level Push Menu - Demo 1</title>
-    <meta name="description" content="Multi-Level Push Menu: Off-screen navigation with multiple levels" />
+    <title>Admin</title>
+    <meta name="description" />
     <meta name="keywords" content="multi-level, menu, navigation, off-canvas, off-screen, mobile, levels, nested, transform" />
     <meta name="author" content="Codrops" />
     <link rel="shortcut icon" href="../favicon.ico">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="css/demo.css" />
     <link rel="stylesheet" type="text/css" href="css/icons.css" asp-append-version="true" />
     <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <link rel="icon" type="image/png" href="~/images/if_home_house_lock_password_2992201.png">
     <script src="js/modernizr.custom.js"></script>
 </head>
 <body>
@@ -37,7 +38,6 @@
                                 </ul>
                             </div>
                         </li>
-
                         <li class="icon icon-arrow-left">
                             <a class="icon icon-location" href="#">Əmlak</a>
                             <div class="mp-level">
@@ -58,27 +58,16 @@
             <div class="scroller">
                 <!-- this is for emulating position fixed of the nav -->
                 <div class="scroller-inner">
-                    <!-- Top Navigation -->
-                    <div class="codrops-top clearfix">
-                        @*<a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Tutorials/CircularNavigation/"><span>Previous Demo</span></a>
-                        <span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=16252"><span>Back to the Codrops Article</span></a></span>*@
+                    <div class="block block-40 clearfix">
+                        <p><a href="#" id="trigger" class="menu-trigger"></a></p>
                     </div>
-                    <header class="codrops-header">
-                        <h1>Multi-Level Push Menu <span>Off-screen navigation with multiple levels</span></h1>
-                    </header>
-                    <div class="content clearfix">
-                        <div class="block block-40 clearfix">
-                            <p><a href="#" id="trigger" class="menu-trigger"></a></p>                           
-                        </div>
-                        
-                    </div>
-                </div><!-- /scroller-inner -->
-            </div><!-- /scroller -->
-        </div><!-- /pusher -->
-    </div><!-- /container -->
-    <div>
-        @RenderBody()
-    </div>
+                </div>
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div><!-- /scroller-inner -->
+    </div><!-- /scroller --> 
     <script src="js/classie.js"></script>
     <script src="js/mlpushmenu.js"></script>
     <script>

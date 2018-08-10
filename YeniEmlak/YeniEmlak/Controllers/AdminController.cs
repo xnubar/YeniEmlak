@@ -11,7 +11,7 @@ using YeniEmlak.Models.ViewModel;
 
 namespace YeniEmlak.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         private IHomeRepository repository;

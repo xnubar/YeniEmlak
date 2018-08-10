@@ -12,7 +12,7 @@ using YeniEmlak.Models.ViewModel;
 namespace YeniEmlak.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20180809122207_SecondModel")]
+    [Migration("20180810114620_SecondModel")]
     partial class SecondModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

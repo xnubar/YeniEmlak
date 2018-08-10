@@ -15,11 +15,12 @@ namespace YeniEmlak.Controllers
     {
         private UserManager<User> userManager;
         private SignInManager<User> signInManager;
+        private RoleManager<IdentityRole> roleManager;
 
         public IActionResult Index()
         {
             var model = new LoginViewModel();
-            return View("Login",model);
+            return View("Login", model);
         }
         [HttpGet]
         public IActionResult Create()
@@ -40,7 +41,7 @@ namespace YeniEmlak.Controllers
             var result = await this.userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-
+                await userManager.AddToRoleAsync(user, "User");
                 return RedirectToAction("Index", "Home");
             }
 
@@ -49,10 +50,11 @@ namespace YeniEmlak.Controllers
         }
 
 
-        public AccountController(UserManager<User> userMgr,SignInManager<User> signInMgr)
+        public AccountController(UserManager<User> userMgr, SignInManager<User> signInMgr, RoleManager<IdentityRole> roleMgr)
         {
             userManager = userMgr;
             signInManager = signInMgr;
+            roleManager = roleMgr;
         }
         [HttpPost]
         [AllowAnonymous]
@@ -61,21 +63,20 @@ namespace YeniEmlak.Controllers
         {
             if (ModelState.IsValid)
             {
-              
-                User user =await userManager.FindByNameAsync(login.Name);
+
+                User user = await userManager.FindByNameAsync(login.Name);
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
-                   if ((await signInManager.PasswordSignInAsync(user, login.Password, false, false)).Succeeded)
+                    if ((await signInManager.PasswordSignInAsync(user, login.Password, false, false)).Succeeded)
                     {
-                        if (true)
+                        var role = await userManager.GetRolesAsync(user);
+                        if (role.First().Equals("User"))
                         {
-                            //admin role
-
-                            return RedirectToAction("Index", "Admin");
+                            return RedirectToAction("Index", "User");
                         }
-                        
-                            
+                        return RedirectToAction("Index", "Admin");
+
                     }
                 }
             }
@@ -86,7 +87,7 @@ namespace YeniEmlak.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
 

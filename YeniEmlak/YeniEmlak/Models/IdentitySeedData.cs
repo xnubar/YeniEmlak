@@ -15,14 +15,26 @@ namespace YeniEmlak.Models
         private const string adminPassword = "Password123$";
         public static async void EnsurePopulated(IApplicationBuilder app)
         {
+            var RoleManager = app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
             UserManager<User> userManager = app.ApplicationServices
             .GetRequiredService<UserManager<User>>();
+            string[] roles = { "Admin", "User" };
+            foreach (var roleName in roles)
+            {
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
             User user = await userManager.FindByIdAsync(adminUser);
             if (user == null)
             {
-                user = new User {UserName = "Admin" };
+                user = new User { UserName = "Admin", Email = "admin.admin@gmail.com" };
                 await userManager.CreateAsync(user, adminPassword);
+                await userManager.AddToRoleAsync(user, "Admin");
             }
         }
     }
 }
+
