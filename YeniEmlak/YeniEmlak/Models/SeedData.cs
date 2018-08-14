@@ -85,15 +85,7 @@ namespace YeniEmlak.Models
                     new AdverType { Name = "KİRAYƏ AYLIQ" },
                     new AdverType { Name = "KİRAYƏ GÜNLÜK" }
                  );
-            }
-
-            if (!context.AdverOwners.Any())
-            {
-                context.AdverOwners.AddRange(
-                    new AdverOwner { Type = "Əmlak sahibi" },
-                    new AdverOwner { Type = "Vasitəçi/Rieltor" }
-                 );
-            }
+            }           
             context.SaveChanges();
         }
     }

@@ -19,7 +19,6 @@ namespace YeniEmlak.Models
         public DbSet<AdverType> AdverTypes { get; set; }
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public DbSet<HomeType> HomeTypes { get; set; }
-        public DbSet<AdverOwner> AdverOwners { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<DependentUI> DependentUIs { get; set; }
         public DbSet<Equipment> Equipments { get; set; }

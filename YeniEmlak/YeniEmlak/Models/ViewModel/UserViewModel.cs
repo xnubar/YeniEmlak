@@ -10,21 +10,19 @@ using YeniEmlak.Models.DomainModel;
 
 namespace YeniEmlak.Models.ViewModel
 {
-    public class UserViewModel:IdentityUser
+    public class UserViewModel : IdentityUser
     {
-       
         [Required]
         public string FullName { get; set; }
-
-        public virtual AdverOwnerViewModel AdverOwner { get; set; }
-        public int? AdverOwnerId { get; set; }
-
         public virtual ICollection<Home> Homes { get; set; }
         public string Address { get; set; }
         public bool SubmittedByAdmin { get; set; }
+
+        public PhoneNumberViewModel UserPhoneNum { get; set; }
+        public int? UserPhoneNumId { get; set; }
+
         [Required]
         public virtual ICollection<PhoneNumber> PhoneNumbers { get; set; }
-
         public static User MapUserViewModelToUser(UserViewModel vm)
         {
             return new User
@@ -32,12 +30,11 @@ namespace YeniEmlak.Models.ViewModel
                 Id = vm.Id,
                 FullName = vm.FullName,
                 Email = vm.Email,
-                Homes = vm.Homes,
-                Address=vm.Address,
-                AdverOwnerId=vm.AdverOwnerId,
-                PhoneNumbers = vm.PhoneNumbers,
-                SubmittedByAdmin=vm.SubmittedByAdmin,
-                UserName=vm.UserName
+                // Homes = vm.Homes,
+                Address = vm.Address,
+                UserPhoneNumId = vm.UserPhoneNumId,
+                SubmittedByAdmin = vm.SubmittedByAdmin,
+                UserName = vm.UserName
             };
 
         }
@@ -47,14 +44,13 @@ namespace YeniEmlak.Models.ViewModel
             {
                 Id = u.Id,
                 FullName = u.FullName,
-                Address=u.Address,                
+                Address = u.Address,
                 Email = u.Email,
                 Homes = u.Homes,
-                SubmittedByAdmin=u.SubmittedByAdmin,
-                AdverOwnerId=u.AdverOwnerId,
-                AdverOwner = AdverOwnerViewModel.MapAdverOwnerToAdverOwnerViewModel(u.AdverOwner),
-                PhoneNumbers = u.PhoneNumbers,
-                UserName=u.UserName
+                SubmittedByAdmin = u.SubmittedByAdmin,
+                UserName = u.UserName,
+                UserPhoneNumId = u.UserPhoneNumId,
+
             };
 
         }

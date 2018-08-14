@@ -9,12 +9,13 @@
     <meta name="keywords" content="multi-level, menu, navigation, off-canvas, off-screen, mobile, levels, nested, transform" />
     <meta name="author" content="Codrops" />
     <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="css/icons.css" asp-append-version="true" />
-    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/icons.css" asp-append-version="true" />
+    <link rel="stylesheet" type="text/css" href="~/css/component.css" />
     <link rel="icon" type="image/png" href="~/images/if_home_house_lock_password_2992201.png">
-    <script src="js/modernizr.custom.js"></script>
+    <script src="~/js/modernizr.custom.js"></script>
+    @RenderSection("styles", false)
 </head>
 <body>
     <div class="container">
@@ -26,34 +27,20 @@
                     <h2 class="icon icon-world">Admin</h2>
                     <ul>
                         <li><a class="icon icon-settings" href="#">Profil</a></li>
-                        <li class="icon icon-arrow-left">
-                            <a class="icon icon-user" href="#">İstifadəçi</a>
-                            <div class="mp-level">
-                                <h2 class="icon icon-news">İstifadəçi</h2>
-                                <ul>
-                                    <li><a href="#">Əlavə et</a></li>
-                                    <li><a href="#">Düzəliş et</a></li>
-                                    <li><a href="#">Sil</a></li>
-                                    <li><a href="#">Siyahı</a></li>
-                                </ul>
-                            </div>
+                        <li>
+                            <a class="icon icon-user" asp-area="" asp-controller="Admin" asp-action="GetUsers">İstifadəçi</a>
                         </li>
-                        <li class="icon icon-arrow-left">
+                        <li>
                             <a class="icon icon-location" href="#">Əmlak</a>
-                            <div class="mp-level">
-                                <h2 class="icon icon-news">Əmlak</h2>
-                                <ul>
-                                    <li><a href="#">Əlavə et</a></li>
-                                    <li><a href="#">Düzəliş et</a></li>
-                                    <li><a href="#">Sil</a></li>
-                                    <li><a href="#">Siyahı</a></li>
-                                </ul>
-                            </div>
+
                         </li>
                         <li><a class="icon icon-arrow-left" asp-area="" asp-controller="Account" asp-action="Logout">Çıxış</a></li>
                     </ul>
                 </div>
+
             </nav>
+
+         
             <!-- /mp-menu -->
             <div class="scroller">
                 <!-- this is for emulating position fixed of the nav -->
@@ -61,15 +48,18 @@
                     <div class="block block-40 clearfix">
                         <p><a href="#" id="trigger" class="menu-trigger"></a></p>
                     </div>
+
                 </div>
                 <div>
                     @RenderBody()
                 </div>
             </div>
         </div><!-- /scroller-inner -->
-    </div><!-- /scroller --> 
-    <script src="js/classie.js"></script>
-    <script src="js/mlpushmenu.js"></script>
+    </div><!-- /scroller -->
+
+  
+    <script src="~/js/classie.js"></script>
+    <script src="~/js/mlpushmenu.js"></script>
     <script>
         new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'));
     </script>

@@ -94,7 +94,7 @@ namespace YeniEmlak.ViewModel
                 AdverTypeId = home.AdverTypeId,
                 AboutHome = home.AboutHome,
                 City = CityViewModel.MapCityToCityViewModel(home.City),
-                User = UserViewModel.MapUserToUserViewModel(home.User),
+               // User = UserViewModel.MapUserToUserViewModel(home.User),
                 HomeType = HomeTypeViewModel.MapHomeTypeToHomeTypeViewModel(home.HomeType),
                 AdverType = AdverTypeViewModel.MapAdverTypeToAdverTypeViewModel(home.AdverType)
                 //  Equipments = home.Equipments.Select(x => EquipmentOfHomeViewModel.MapEquipmentOfHomeToEquipmentOfHomeViewModel(x)).ToList()

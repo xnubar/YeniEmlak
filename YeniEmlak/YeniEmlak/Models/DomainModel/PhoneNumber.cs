@@ -9,11 +9,11 @@ namespace YeniEmlak.DomainModel
     public class PhoneNumber
     {
         public int Id { get; set; }
-        [ForeignKey("User")]
-        public string UserId { get; set; }
-        
-        public User User { get; set; }
-        public string Number { get; set; }
+        public virtual ICollection<User> Users { get; set; }
+
+        public string NumOne { get; set; }
+        public string NumTwo { get; set; }
+        public string NumThree { get; set; }
 
     }
 }

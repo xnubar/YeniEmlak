@@ -22,7 +22,6 @@ namespace YeniEmlak.Models
         }
 
         public IQueryable<Home> Homes => context.Homes;
-        public IQueryable<AdverOwner> AdverOwners => context.AdverOwners;
         public IQueryable<AdverType> AdverTypes => context.AdverTypes;
         public IQueryable<City> Cities => context.Cities;
         public IQueryable<PhoneNumber> PhoneNumbers => context.PhoneNumbers;
@@ -82,7 +81,7 @@ namespace YeniEmlak.Models
         {
             try
             {
-                return context.Homes.Include(x => x.City).Include(x => x.AdverType).Include(x => x.HomeType).ToList();
+                return context.Homes.Include(x => x.City).Include(x=>x.User).Include(x => x.AdverType).Include(x => x.HomeType).ToList();
             }
             catch (Exception)
             {
