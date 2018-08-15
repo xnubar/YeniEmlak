@@ -1,19 +1,11 @@
 ﻿.add-btn{
     background-color:red;
+    width:100px;
+    height:30px;
 }
 
 .delete-btn {
     background-color: green;
-}
-
-.tableContent {
-    width: 1005px;
-    margin: 0 auto;
-}
-
-table {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 2px;
-    border-color: grey;
+    width: 100px;
+    height: 30px;
 }

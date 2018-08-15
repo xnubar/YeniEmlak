@@ -1,67 +1,172 @@
-﻿<!DOCTYPE html>
-<html lang="en" class="no-js">
+﻿<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <meta name="description" />
-    <meta name="keywords" content="multi-level, menu, navigation, off-canvas, off-screen, mobile, levels, nested, transform" />
-    <meta name="author" content="Codrops" />
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="~/css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="~/css/icons.css" asp-append-version="true" />
-    <link rel="stylesheet" type="text/css" href="~/css/component.css" />
-    <link rel="icon" type="image/png" href="~/images/if_home_house_lock_password_2992201.png">
-    <script src="~/js/modernizr.custom.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     @RenderSection("styles", false)
-</head>
-<body>
-    <div class="container">
-        <!-- Push Wrapper -->
-        <div class="mp-pusher" id="mp-pusher">
-            <!-- mp-menu -->
-            <nav id="mp-menu" class="mp-menu">
-                <div class="mp-level">
-                    <h2 class="icon icon-world">Admin</h2>
-                    <ul>
-                        <li><a class="icon icon-settings" href="#">Profil</a></li>
-                        <li>
-                            <a class="icon icon-user" asp-area="" asp-controller="Admin" asp-action="GetUsers">İstifadəçi</a>
-                        </li>
-                        <li>
-                            <a class="icon icon-location" href="#">Əmlak</a>
+    <title>Admin</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Admin" asp-action="GetUsers">
+                                <span data-feather="users"></span>
+                                İstifadəçilər <span class="sr-only">(current)</span>
+                            </a>
                         </li>
-                        <li><a class="icon icon-arrow-left" asp-area="" asp-controller="Account" asp-action="Logout">Çıxış</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file"></span>
+                                Əmlaklar
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file"></span>
+                                Profil
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">
+                                <span data-feather="file"></span>
+                                Çıxış
+                            </a>
+                        </li>
                     </ul>
                 </div>
-
             </nav>
 
-         
-            <!-- /mp-menu -->
-            <div class="scroller">
-                <!-- this is for emulating position fixed of the nav -->
-                <div class="scroller-inner">
-                    <div class="block block-40 clearfix">
-                        <p><a href="#" id="trigger" class="menu-trigger"></a></p>
-                    </div>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
 
-                </div>
-                <div>
-                    @RenderBody()
-                </div>
-            </div>
-        </div><!-- /scroller-inner -->
-    </div><!-- /scroller -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="~/lib/bootstrap/site/docs/4.1/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="~/lib/bootstrap/site/docs/4.1/assets/js/vendor/popper.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
-  
-    <script src="~/js/classie.js"></script>
-    <script src="~/js/mlpushmenu.js"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
-        new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'));
+        feather.replace()
     </script>
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+    <html lang="en" class="no-js">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin</title>
+        <meta name="description" />
+        <meta name="keywords" content="multi-level, menu, navigation, off-canvas, off-screen, mobile, levels, nested, transform" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="~/css/normalize.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/css/demo.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/css/icons.css" asp-append-version="true" />
+        <link rel="stylesheet" type="text/css" href="~/css/component.css" asp-append-version="true" />
+        <link rel="icon" type="image/png" href="~/images/if_home_house_lock_password_2992201.png">
+        <script src="~/js/modernizr.custom.js"></script>
+        @RenderSection("styles", false)
+    </head>
+    <body>
+        <div class="container">
+            <!-- Push Wrapper -->
+            <div class="mp-pusher" id="mp-pusher">
+                <!-- mp-menu -->
+                <nav id="mp-menu" class="mp-menu">
+                    <div class="mp-level">
+                        <h2 class="icon icon-world">Admin</h2>
+                        <ul>
+                            <li><a class="icon icon-settings" href="#">Profil</a></li>
+                            <li>
+                                <a class="icon icon-user" >İstifadəçi</a>
+                            </li>
+                            <li>
+                                <a class="icon icon-location" href="#">Əmlak</a>
+
+                            </li>
+                            <li><a class="icon icon-arrow-left" asp-area="" asp-controller="Account" asp-action="Logout">Çıxış</a></li>
+                        </ul>
+                    </div>
+
+                </nav>
+
+
+                <!-- /mp-menu -->
+                <div class="scroller">
+                    <!-- this is for emulating position fixed of the nav -->
+                    <div class="scroller-inner">
+                        <div class="block block-40 clearfix">
+                            <p><a href="#" id="trigger" class="menu-trigger"></a></p>
+                        </div>
+
+                    </div>
+                    <div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div><!-- /scroller-inner -->
+        </div><!-- /scroller -->
+
+
+        <script src="~/js/classie.js"></script>
+        <script src="~/js/mlpushmenu.js"></script>
+        <script>
+            new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'));
+        </script>
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>*@

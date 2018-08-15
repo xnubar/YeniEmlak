@@ -7,91 +7,44 @@
 @section styles{
 
     <link rel="stylesheet" type="text/css" href="~/css/userList.css" asp-append-version="true" />
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
 
 }
 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
 
-
-
-
-
-
-
-
-<div class="limiter">
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table">
-
-                <div class="row header">
-                    <div class="cell">
-                        ID
-                    </div>
-                    <div class="cell">
-                        FullName
-                    </div>
-                    <div class="cell">
-                        Operations
-                    </div>
-                </div>
-                @if (Model.Count() == 0)
-                {
-                    <p>No Roles</p>
-                }
-                else
-                {
-                    foreach (var user in Model)
-                    {
-                        <div class="row">
-                            <div class="cell" data-title="ID">
-                                @user.Id
-                            </div>
-                             
-                         
-                            <div class="cell" data-title="FullName">
-                               @user.FullName
-                            </div>
-                          
-                            <div class="cell" data-title="Operations">
-                                Washington
-                            </div>
-                        </div>
-
-
-
-
-                        <tr>
-                            <td>@user.Id</td>
-                            <td>@user.FullName</td>
-                            <td>
-                                <form asp-route-id="@user.Id" method="post">
-
-                                    <button type="submit" class="delete-btn" />
-
-                                    <button type="submit" disabled=@user.SubmittedByAdmin ?"disabled" class="add-btn">
-                                        Confirm
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                }
-
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
+<table class="table table-striped" style="margin-top:60px;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Ad/Soyad</th>
+            <th scope="col">Əməliyyat</th>
+        </tr>
+    </thead>
+    <tbody>
+     
+        
+        @{
+            int i = 1;
+            @foreach (var user in Model)
+            {
+                <tr id="@user.Id">
+                    <th scope="row">@i</th>
+                    <td>@user.Id</td>
+                    <td>@user.FullName</td>
+                    <td>
+                        <button type="submit" class="delete-btn">Delete</button>
+                        <button type="submit" disabled=@(user.SubmittedByAdmin ? "disabled") class="add-btn">
+                            Confirm
+                        </button>
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>
 
 
 
@@ -100,20 +53,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="~/vendor/bootstrap/js/popper.js"></script>
-<script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="~/vendor/select2/select2.min.js"></script>
-<script src="~/js/main.js"></script>
