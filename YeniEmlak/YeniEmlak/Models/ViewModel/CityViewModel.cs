@@ -32,8 +32,8 @@ namespace YeniEmlak.Models.ViewModel
         {
             return new City
             {
-                Id = vm.Id
-               
+                Id = vm.Id,
+               Name=vm.Name
             };
         }
     }

@@ -1,81 +1,76 @@
-﻿@model IEnumerable<YeniEmlak.Models.ViewModel.UserViewModel>
+﻿@model IEnumerable<YeniEmlak.ViewModel.HomeViewModel>
 @{
-    ViewData["Title"] = "İstifadəçilər";
+    ViewData["Title"] = "HomeList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 
 @section styles{
 
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
 
 }
-<div class="text-danger" asp-validation-summary="ModelOnly"></div>
-
 
 <table class="table table-striped" style="margin-top:60px;">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">ID</th>
-            <th scope="col">Ad/Soyad</th>
+            <th scope="col">Info</th>
             <th scope="col">Əməliyyat</th>
         </tr>
     </thead>
     <tbody>
-
-
         @{
             int i = 1;
-            @foreach (var user in Model)
+            @foreach (var home in Model)
             {
-                <tr id="@user.Id">
+                <tr id="@home.Id">
                     <th scope="row">@i</th>
-                    <td>@user.Id</td>
-                    <td>@user.FullName</td>
+                    <td>@home.Id</td>
+                    <td>@home.City?.Name, @home.HomeType.Name,@home.BuildingType.ToString()</td>
                     <td>
-                        <button type="submit" id="delete-user" class="btn btn">Delete</button>
-                        @if (!user.SubmittedByAdmin)
+                        <button type="submit" id="delete-home" class="btn btn">Delete</button>
+                        @if (!home.SubmittedByAdmin)
                         {
 
-                            <button type="submit" id="confirm-user" class="btn btn-danger">
+                            <button type="submit" id="confirm-home" class="btn btn-danger">
                                 Confirm
                             </button>
-                        }                      
-
+                        }
                     </td>
                 </tr>
-                i++;
             }
         }
+
     </tbody>
 </table>
 
-
-@section Scripts{ 
+@section Scripts{
 
     <script>
         $(document).ready(function () {
-            $("#confirm-user").click(function () {
+            $("#confirm-home").click(function () {
                 var id = $(this).closest("tr").attr('id');
                     $.ajax({
                         type: "GET",
-                        url: "/Admin/SubmitUser?id=" + id,
+                        url: "/Admin/SubmitHome?id=" + id,
                         success: function () {
                             $(this).hide();
                         }
                     });
             });
 
-            $("#delete-user").click(function () {
+            $("#delete-home").click(function () {
                 var id = $(this).closest("tr").attr('id');
                     $.ajax({
                         type: "DELETE",
-                        url: "/Admin/DeleteUser?id=" + id,
+                        url: "/Admin/DeleteHome?id=" + id,
                         success: function () {
                             $(this).closest("tr").remove();
                         }
                     });
-               
+
             });
         });
     </script>

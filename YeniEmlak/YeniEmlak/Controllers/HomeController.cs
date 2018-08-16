@@ -111,6 +111,7 @@ namespace YeniEmlak.Controllers
         public IActionResult AddHome()
         {
             var home = new HomeViewModel();
+            home.SubmittedByAdmin = false;
             home.Cities = homeRepo.Cities.Select(x => CityViewModel.MapCityToCityViewModel(x)).ToList();
             home.HomeTypes = homeRepo.HomeTypes.Select(x => HomeTypeViewModel.MapHomeTypeToHomeTypeViewModel(x)).ToList();
             home.AdverTypes = homeRepo.AdverTypes.Select(x => AdverTypeViewModel.MapAdverTypeToAdverTypeViewModel(x)).ToList();

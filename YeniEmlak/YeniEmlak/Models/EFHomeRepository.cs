@@ -159,6 +159,24 @@ namespace YeniEmlak.Models
                 throw;
             }
         }
+        public Home FindById(int id)
+        {
+            try
+            {
+                var home = Homes.First(x => x.Id == id);
+                if (home != null)
+                {
+                    return home;
+                }
+                throw new Exception("No such home found");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
+        }
 
 
     }

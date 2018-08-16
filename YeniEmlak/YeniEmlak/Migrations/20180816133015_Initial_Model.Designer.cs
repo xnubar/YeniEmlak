@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 using YeniEmlak.Models;
 
-namespace YeniEmlak.Migrations.HomeDb
+namespace YeniEmlak.Migrations
 {
     [DbContext(typeof(HomeDbContext))]
-    [Migration("20180814124304_InitialModel_Homes")]
-    partial class InitialModel_Homes
+    [Migration("20180816133015_Initial_Model")]
+    partial class Initial_Model
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,7 @@ namespace YeniEmlak.Migrations.HomeDb
 
                     b.Property<int>("CityId");
 
-                    b.Property<bool?>("Credit");
+                    b.Property<bool>("Credit");
 
                     b.Property<int?>("EstateDocumentType");
 
@@ -65,6 +65,8 @@ namespace YeniEmlak.Migrations.HomeDb
                     b.Property<int>("RoomCount");
 
                     b.Property<int?>("Stair");
+
+                    b.Property<bool>("SubmittedByAdmin");
 
                     b.Property<int?>("TotalStairCount");
 

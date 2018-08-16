@@ -9,13 +9,12 @@ using System;
 using YeniEmlak.Models;
 using YeniEmlak.Models.ViewModel;
 
-namespace YeniEmlak.Migrations
+namespace YeniEmlak.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20180814124147_Users_UserPhoneNumId")]
-    partial class Users_UserPhoneNumId
+    partial class AppIdentityDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +158,7 @@ namespace YeniEmlak.Migrations
 
                     b.Property<int>("CityId");
 
-                    b.Property<bool?>("Credit");
+                    b.Property<bool>("Credit");
 
                     b.Property<int?>("EstateDocumentType");
 
@@ -174,6 +173,8 @@ namespace YeniEmlak.Migrations
                     b.Property<int>("RoomCount");
 
                     b.Property<int?>("Stair");
+
+                    b.Property<bool>("SubmittedByAdmin");
 
                     b.Property<int?>("TotalStairCount");
 

@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace YeniEmlak.Migrations
+namespace YeniEmlak.Migrations.AppIdentityDb
 {
-    public partial class Users_UserPhoneNumId : Migration
+    public partial class UserDbContext_Model : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -245,7 +245,7 @@ namespace YeniEmlak.Migrations
                     Area = table.Column<int>(nullable: true),
                     BuildingType = table.Column<int>(nullable: false),
                     CityId = table.Column<int>(nullable: false),
-                    Credit = table.Column<bool>(nullable: true),
+                    Credit = table.Column<bool>(nullable: false),
                     EstateDocumentType = table.Column<int>(nullable: true),
                     HomeImg = table.Column<string>(nullable: true),
                     HomeTypeId = table.Column<int>(nullable: false),
@@ -253,6 +253,7 @@ namespace YeniEmlak.Migrations
                     Price = table.Column<decimal>(nullable: false),
                     RoomCount = table.Column<int>(nullable: false),
                     Stair = table.Column<int>(nullable: true),
+                    SubmittedByAdmin = table.Column<bool>(nullable: false),
                     TotalStairCount = table.Column<int>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },

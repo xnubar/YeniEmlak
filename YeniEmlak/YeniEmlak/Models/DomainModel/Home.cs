@@ -42,11 +42,11 @@ namespace YeniEmlak.DomainModel
 
         public int RoomCount { get; set; }
         public int? Area { get; set; }
-        public bool? Credit { get; set; }
+        public bool Credit { get; set; }
         public string HomeImg { get; set; }
         public decimal Price { get; set; }
         public string AboutHome { get; set; }
         public int? LandArea { get; set; }
-
+        public bool SubmittedByAdmin { get; set; }
     }
 }

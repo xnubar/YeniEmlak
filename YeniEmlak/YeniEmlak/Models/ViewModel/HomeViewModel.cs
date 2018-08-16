@@ -48,10 +48,12 @@ namespace YeniEmlak.ViewModel
 
         public int RoomCount { get; set; }
         public int? Area { get; set; }
-        public bool? Credit { get; set; }
+        public bool Credit { get; set; }
         public int? LandArea { get; set; }
         public int? TotalStairCount { get; set; }
         public int? Stair { get; set; }
+        public bool SubmittedByAdmin { get; set; }
+
         public List<EquipmentOfHomeViewModel> Equipments { get; set; }
 
         [NotMapped, FileExtensions(Extensions = "jpg")]
@@ -93,6 +95,7 @@ namespace YeniEmlak.ViewModel
                 EstateDocumentType = home.EstateDocumentType,
                 AdverTypeId = home.AdverTypeId,
                 AboutHome = home.AboutHome,
+                SubmittedByAdmin=home.SubmittedByAdmin,
                 City = CityViewModel.MapCityToCityViewModel(home.City),
                // User = UserViewModel.MapUserToUserViewModel(home.User),
                 HomeType = HomeTypeViewModel.MapHomeTypeToHomeTypeViewModel(home.HomeType),
@@ -120,6 +123,7 @@ namespace YeniEmlak.ViewModel
                 Credit = vm.Credit,
                 LandArea = vm.LandArea,
                 HomeImg = vm.HomeImg,
+                SubmittedByAdmin=vm.SubmittedByAdmin,
                 Price = vm.Price,
                 AdverTypeId = vm.AdverTypeId,
                 AboutHome = vm.AboutHome
