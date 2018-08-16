@@ -59,7 +59,7 @@ namespace YeniEmlak.Models
             }
         }
 
-        public void Delete(HomeViewModel vm)
+        public void Delete(Home vm)
         {
             try
             {
@@ -67,7 +67,8 @@ namespace YeniEmlak.Models
                 {
                     throw new ArgumentNullException("Home View Model");
                 }
-                context.Homes.Remove(HomeViewModel.MapHomeViewModelToHome(vm));
+
+                context.Homes.Remove (context.Homes.First(x=>x.Id==vm.Id));
                 context.SaveChanges();
             }
             catch (Exception)
@@ -142,7 +143,7 @@ namespace YeniEmlak.Models
 
         }
 
-        public void Update(HomeViewModel vm)
+        public void Update(Home vm)
         {
             try
             {
@@ -150,7 +151,7 @@ namespace YeniEmlak.Models
                 {
                     throw new ArgumentNullException("Home View Model");
                 }
-                context.Entry(HomeViewModel.MapHomeViewModelToHome(vm)).State = EntityState.Modified;
+                context.Entry(context.Homes.First(x=>x.Id==vm.Id)).State = EntityState.Modified;
                 context.SaveChanges();
             }
             catch (Exception)

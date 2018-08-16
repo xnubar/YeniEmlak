@@ -43,7 +43,7 @@ namespace YeniEmlak.Controllers
         {
             var homes = repository.GetAll();
             var homesVM = homes.Select(x => HomeViewModel.MapHomeToHomeViewModel(x));
-            return View("HomeList", homesVM);
+            return View();
         }
 
         [HttpGet]
@@ -55,7 +55,7 @@ namespace YeniEmlak.Controllers
                 user.SubmittedByAdmin = true;
                 await userManager.UpdateAsync(user);
             }
-            return View();
+            return RedirectToAction("AdminPage", "Admin",userManager.Users.Select(x=>UserViewModel.MapUserToUserViewModel(x)));
         }
 
         [HttpGet]
@@ -63,7 +63,7 @@ namespace YeniEmlak.Controllers
         {
             var home = repository.FindById(id);
             home.SubmittedByAdmin = true;
-            repository.Update(HomeViewModel.MapHomeToHomeViewModel(home));
+            repository.Update(home);
             return View();
         }
 
@@ -74,14 +74,14 @@ namespace YeniEmlak.Controllers
         public async Task<IActionResult> DeleteUser(string id)
         {
             await userManager.DeleteAsync(userManager.Users.First(x => x.Id.Equals(id)));
-            return RedirectToAction("GetUsers");
+            return PartialView("UserList",userManager.Users.Select(x=>UserViewModel.MapUserToUserViewModel(x)));
         }
 
         [HttpDelete]
         public IActionResult DeleteHome(int id)
         {
             var home = repository.FindById(id);
-            repository.Delete(HomeViewModel.MapHomeToHomeViewModel(home));
+            repository.Delete(home);
             return View();
         }
     }

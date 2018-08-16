@@ -30,6 +30,7 @@ namespace YeniEmlak.Models.ViewModel
         }
         public static City MapCityViewModelToCity(CityViewModel vm)
         {
+          
             return new City
             {
                 Id = vm.Id,
