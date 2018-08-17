@@ -43,7 +43,7 @@ namespace YeniEmlak.Controllers
         {
             var homes = repository.GetAll();
             var homesVM = homes.Select(x => HomeViewModel.MapHomeToHomeViewModel(x));
-            return View();
+            return View("HomeList",homesVM);
         }
 
         [HttpGet]
@@ -54,8 +54,11 @@ namespace YeniEmlak.Controllers
             {
                 user.SubmittedByAdmin = true;
                 await userManager.UpdateAsync(user);
+
             }
-            return RedirectToAction("AdminPage", "Admin",userManager.Users.Select(x=>UserViewModel.MapUserToUserViewModel(x)));
+            var users = await userManager.GetUsersInRoleAsync("User");
+            var usersVM = users.Select(x => UserViewModel.MapUserToUserViewModel(x));
+            return PartialView("Users",usersVM);
         }
 
         [HttpGet]
@@ -64,7 +67,8 @@ namespace YeniEmlak.Controllers
             var home = repository.FindById(id);
             home.SubmittedByAdmin = true;
             repository.Update(home);
-            return View();
+            var homes = repository.GetAll().Select(x=>HomeViewModel.MapHomeToHomeViewModel(x));
+            return PartialView("Homes",homes);
         }
 
 
@@ -74,7 +78,9 @@ namespace YeniEmlak.Controllers
         public async Task<IActionResult> DeleteUser(string id)
         {
             await userManager.DeleteAsync(userManager.Users.First(x => x.Id.Equals(id)));
-            return PartialView("UserList",userManager.Users.Select(x=>UserViewModel.MapUserToUserViewModel(x)));
+            var users = await userManager.GetUsersInRoleAsync("User");
+            var usersVM = users.Select(x => UserViewModel.MapUserToUserViewModel(x));
+            return PartialView("Users",usersVM);
         }
 
         [HttpDelete]
@@ -82,7 +88,8 @@ namespace YeniEmlak.Controllers
         {
             var home = repository.FindById(id);
             repository.Delete(home);
-            return View();
+            var homes = repository.GetAll().Select(x => HomeViewModel.MapHomeToHomeViewModel(x));
+            return PartialView("Homes", homes);
         }
     }
 }

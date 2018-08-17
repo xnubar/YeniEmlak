@@ -11,44 +11,13 @@
 }
 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
+<div id="users">
 
-<table class="table table-striped" style="margin-top:60px;">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Ad/Soyad</th>
-            <th scope="col">Əməliyyat</th>
-        </tr>
-    </thead>
-    <tbody>
+    @{Html.RenderPartial("Users", Model);}
+</div>
 
+     
 
-        @{
-            int i = 1;
-            @foreach (var user in Model)
-            {
-                <tr id="@user.Id">
-                    <th scope="row">@i</th>
-                    <td>@user.Id</td>
-                    <td>@user.FullName</td>
-                    <td>
-                        <button type="submit" id="delete-user" class="btn btn">Delete</button>
-                        @if (!user.SubmittedByAdmin)
-                        {
-
-                            <button type="submit" id="confirm-user" class="btn btn-danger">
-                                Confirm
-                            </button>
-                        }                      
-
-                    </td>
-                </tr>
-                i++;
-            }
-        }
-    </tbody>
-</table>
 
 
 @section Scripts{ 
@@ -60,8 +29,9 @@
                     $.ajax({
                         type: "GET",
                         url: "/Admin/SubmitUser?id=" + id,
-                        success: function () {
+                        success: function (html) {
                             $(this).hide();
+                            $("#users").html(html);
                         }
                     });
             });
@@ -71,8 +41,9 @@
                     $.ajax({
                         type: "DELETE",
                         url: "/Admin/DeleteUser?id=" + id,
-                        success: function () {
+                        success: function (html) {
                             $(this).closest("tr").remove();
+                            $("#users").html(html);
                         }
                     });
                

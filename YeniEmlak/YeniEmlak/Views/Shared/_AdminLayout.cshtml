@@ -35,9 +35,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Settings">
                                 <span data-feather="file"></span>
-                                Profil
+                                Tənzimləmələr
                             </a>
                         </li>
 
@@ -51,7 +51,7 @@
                 </div>
             </nav>
 
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4" id="partial_view">
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                 @RenderBody()
             </main>
         </div>

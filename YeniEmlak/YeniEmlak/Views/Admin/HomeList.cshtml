@@ -11,40 +11,9 @@
 
 }
 
-<table class="table table-striped" style="margin-top:60px;">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">ID</th>
-            <th scope="col">Info</th>
-            <th scope="col">Əməliyyat</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            int i = 1;
-            @foreach (var home in Model)
-            {
-                <tr id="@home.Id">
-                    <th scope="row">@i</th>
-                    <td>@home.Id</td>
-                    <td>@home.City?.Name, @home.HomeType.Name,@home.BuildingType.ToString()</td>
-                    <td>
-                        <button type="submit" id="delete-home" class="btn btn">Delete</button>
-                        @if (!home.SubmittedByAdmin)
-                        {
-
-                            <button type="submit" id="confirm-home" class="btn btn-danger">
-                                Confirm
-                            </button>
-                        }
-                    </td>
-                </tr>
-            }
-        }
-
-    </tbody>
-</table>
+<div id="homes">
+    @{Html.RenderPartial("Homes", Model);}
+</div>
 
 @section Scripts{
 
@@ -52,24 +21,26 @@
         $(document).ready(function () {
             $("#confirm-home").click(function () {
                 var id = $(this).closest("tr").attr('id');
-                    $.ajax({
-                        type: "GET",
-                        url: "/Admin/SubmitHome?id=" + id,
-                        success: function () {
-                            $(this).hide();
-                        }
-                    });
+                $.ajax({
+                    type: "GET",
+                    url: "/Admin/SubmitHome?id=" + id,
+                    success: function (html) {
+                        $(this).hide();
+                        $("#homes").html(html);
+                    }
+                });
             });
 
             $("#delete-home").click(function () {
                 var id = $(this).closest("tr").attr('id');
-                    $.ajax({
-                        type: "DELETE",
-                        url: "/Admin/DeleteHome?id=" + id,
-                        success: function () {
-                            $(this).closest("tr").remove();
-                        }
-                    });
+                $.ajax({
+                    type: "DELETE",
+                    url: "/Admin/DeleteHome?id=" + id,
+                    success: function (html) {
+                        $(this).closest("tr").remove();
+                        $("#homes").html(html);
+                    }
+                });
 
             });
         });

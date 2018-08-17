@@ -1,0 +1,36 @@
+﻿@model IEnumerable<YeniEmlak.ViewModel.HomeViewModel>
+
+<table class="table table-striped" style="margin-top:60px;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">Info</th>
+            <th scope="col">Əməliyyat</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+            @foreach (var home in Model)
+            {
+                <tr id="@home.Id">
+                    <th scope="row">@i</th>
+                    <td>@home.Id</td>
+                    <td>@home.City?.Name, @home.HomeType.Name,@home.BuildingType.ToString()</td>
+                    <td>
+                        <button type="submit" id="delete-home" class="btn btn">Delete</button>
+                        @if (!home.SubmittedByAdmin)
+                        {
+
+                            <button type="submit" id="confirm-home" class="btn btn-danger">
+                                Confirm
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>

@@ -151,7 +151,9 @@ namespace YeniEmlak.Models
                 {
                     throw new ArgumentNullException("Home View Model");
                 }
-                context.Entry(context.Homes.First(x=>x.Id==vm.Id)).State = EntityState.Modified;
+             
+              
+                context.Entry(context.Homes.First(x => x.Id == vm.Id)).State = EntityState.Modified;
                 context.SaveChanges();
             }
             catch (Exception)
