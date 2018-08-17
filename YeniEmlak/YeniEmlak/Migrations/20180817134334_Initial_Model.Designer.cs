@@ -11,7 +11,7 @@ using YeniEmlak.Models;
 namespace YeniEmlak.Migrations
 {
     [DbContext(typeof(HomeDbContext))]
-    [Migration("20180816133015_Initial_Model")]
+    [Migration("20180817134334_Initial_Model")]
     partial class Initial_Model
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -10,7 +10,7 @@ namespace YeniEmlak.Controllers
     {
         public IActionResult Index()
         {
-            return View("AdminPage", "~/Views/Shared/_UserLayout.cshtml");
+            return View("Login", "~/Views/Shared/_UserLayout.cshtml");
         }
     }
 }

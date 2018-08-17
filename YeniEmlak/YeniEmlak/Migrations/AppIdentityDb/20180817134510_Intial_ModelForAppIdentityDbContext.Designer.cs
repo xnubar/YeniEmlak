@@ -12,8 +12,8 @@ using YeniEmlak.Models.ViewModel;
 namespace YeniEmlak.Migrations.AppIdentityDb
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20180816133113_UserDbContext_Model")]
-    partial class UserDbContext_Model
+    [Migration("20180817134510_Intial_ModelForAppIdentityDbContext")]
+    partial class Intial_ModelForAppIdentityDbContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

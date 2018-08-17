@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace YeniEmlak.Migrations.AppIdentityDb
 {
-    public partial class UserDbContext_Model : Migration
+    public partial class Intial_ModelForAppIdentityDbContext : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
