@@ -28,7 +28,7 @@ namespace YeniEmlak.Models
         public IQueryable<HomeType> HomeTypes => context.HomeTypes;
         public IQueryable<DependentUI> DependentUIs => context.DependentUIs;
         public IQueryable<Equipment> Equipments => context.Equipments;
-        public void Create(HomeViewModel vm)
+        public void Create(Home vm)
         {
             {
                 try
@@ -37,19 +37,7 @@ namespace YeniEmlak.Models
                     {
                         throw new ArgumentNullException("Home View Model");
                     }
-                    if (vm.Image != null)
-                    {
-                        var fileName = ImageHelpers.GetUniqueName(vm.Image.FileName);
-                        vm.HomeImg = fileName;
-                        var uploads = $"{@"C:\YeniEmlakImages\"}";
-                        var filePath = Path.Combine(uploads, fileName);
-                        using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
-                        {
-                            vm.Image.CopyTo(fileStream);
-                        }
-                    }
-
-                    context.Homes.Add(HomeViewModel.MapHomeViewModelToHome(vm));
+                    context.Homes.Add(vm);
                     context.SaveChanges();
                 }
                 catch (Exception ex)

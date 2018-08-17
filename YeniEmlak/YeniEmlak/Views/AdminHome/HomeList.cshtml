@@ -19,23 +19,22 @@
 
     <script>
         $(document).ready(function () {
-            $("#confirm-home").click(function () {
+            $("#homes").on('click','#confirm-home',function () {
                 var id = $(this).closest("tr").attr('id');
                 $.ajax({
                     type: "GET",
-                    url: "/Admin/SubmitHome?id=" + id,
+                    url: '@Url.Action("Confirm","AdminHome")'+"?id="+ id,
                     success: function (html) {
-                        $(this).hide();
                         $("#homes").html(html);
                     }
                 });
             });
 
-            $("#delete-home").click(function () {
+            $("#homes").on('click','#delete-home',function () {
                 var id = $(this).closest("tr").attr('id');
                 $.ajax({
                     type: "DELETE",
-                    url: "/Admin/DeleteHome?id=" + id,
+                    url: '@Url.Action("Delete","AdminHome")'+"?id="+ id,
                     success: function (html) {
                         $(this).closest("tr").remove();
                         $("#homes").html(html);

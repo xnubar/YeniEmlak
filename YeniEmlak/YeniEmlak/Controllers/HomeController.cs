@@ -14,6 +14,7 @@ using YeniEmlak.Models.ViewModel;
 using YeniEmlak.ViewModel;
 using System.Web;
 using Newtonsoft.Json;
+using YeniEmlak.Models.Tools;
 
 namespace YeniEmlak.Controllers
 {
@@ -66,7 +67,19 @@ namespace YeniEmlak.Controllers
 
             //if (ModelState.IsValid)
             //{
-            homeRepo.Create(home);
+            if (home.Image != null)
+            {
+                var fileName = ImageHelpers.GetUniqueName(home.Image.FileName);
+                home.HomeImg = fileName;
+                var uploads = $"{@"C:\YeniEmlakImages\"}";
+                var filePath = Path.Combine(uploads, fileName);
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                {
+                    home.Image.CopyTo(fileStream);
+                }
+            }
+         
+            homeRepo.Create(HomeViewModel.MapHomeViewModelToHome(home));
             return RedirectToAction("Index");
             //}
             //else

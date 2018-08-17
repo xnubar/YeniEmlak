@@ -26,70 +26,19 @@ namespace YeniEmlak.Controllers
             this.signInManager = signInManager;
             repository = repo;
         }
+
+
         public IActionResult Index()
         {
             var model = new LoginViewModel();
             return View("AdminPage", "~/Views/Shared/_AdminLayout.cshtml");
         }
-
-        public async Task<IActionResult> GetUsers()
+        public IActionResult ChangePassword()
         {
-            var users = await userManager.GetUsersInRoleAsync("User");
-            var usersVM = users.Select(x => UserViewModel.MapUserToUserViewModel(x));
-            return View("UserList", usersVM);
-        }
-
-        public IActionResult GetHomes()
-        {
-            var homes = repository.GetAll();
-            var homesVM = homes.Select(x => HomeViewModel.MapHomeToHomeViewModel(x));
-            return View("HomeList",homesVM);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> SubmitUser(string id)
-        {
-            var user = userManager.Users.First(x => x.Id.Equals(id));
-            if (user != null)
-            {
-                user.SubmittedByAdmin = true;
-                await userManager.UpdateAsync(user);
-
-            }
-            var users = await userManager.GetUsersInRoleAsync("User");
-            var usersVM = users.Select(x => UserViewModel.MapUserToUserViewModel(x));
-            return PartialView("Users",usersVM);
-        }
-
-        [HttpGet]
-        public IActionResult SubmitHome(int id)
-        {
-            var home = repository.FindById(id);
-            home.SubmittedByAdmin = true;
-            repository.Update(home);
-            var homes = repository.GetAll().Select(x=>HomeViewModel.MapHomeToHomeViewModel(x));
-            return PartialView("Homes",homes);
+            var user = new ChangePasswordViewModel();
+            return View("ChangePassword", user);
         }
 
 
-
-
-        [HttpDelete]
-        public async Task<IActionResult> DeleteUser(string id)
-        {
-            await userManager.DeleteAsync(userManager.Users.First(x => x.Id.Equals(id)));
-            var users = await userManager.GetUsersInRoleAsync("User");
-            var usersVM = users.Select(x => UserViewModel.MapUserToUserViewModel(x));
-            return PartialView("Users",usersVM);
-        }
-
-        [HttpDelete]
-        public IActionResult DeleteHome(int id)
-        {
-            var home = repository.FindById(id);
-            repository.Delete(home);
-            var homes = repository.GetAll().Select(x => HomeViewModel.MapHomeToHomeViewModel(x));
-            return PartialView("Homes", homes);
-        }
     }
 }

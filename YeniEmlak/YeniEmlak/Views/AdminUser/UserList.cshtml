@@ -24,23 +24,22 @@
 
     <script>
         $(document).ready(function () {
-            $("#confirm-user").click(function () {
+            $("#users").on('click','#confirm-user',function () {
                 var id = $(this).closest("tr").attr('id');
                     $.ajax({
                         type: "GET",
-                        url: "/Admin/SubmitUser?id=" + id,
+                        url: '@Url.Action("Confirm","AdminUser")'+"?id="+id ,
                         success: function (html) {
-                            $(this).hide();
                             $("#users").html(html);
                         }
                     });
             });
 
-            $("#delete-user").click(function () {
+            $("#users").on('click','#delete-user',function () {
                 var id = $(this).closest("tr").attr('id');
                     $.ajax({
                         type: "DELETE",
-                        url: "/Admin/DeleteUser?id=" + id,
+                        url:  '@Url.Action("Delete","AdminUser")'+"?id="+id ,
                         success: function (html) {
                             $(this).closest("tr").remove();
                             $("#users").html(html);

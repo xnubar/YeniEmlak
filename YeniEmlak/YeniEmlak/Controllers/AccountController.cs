@@ -27,8 +27,9 @@ namespace YeniEmlak.Controllers
         {
             var model = new RegisterViewModel();
             return View("CreateAccount", model);
-
         }
+   
+
 
         [HttpPost]
         public async Task<IActionResult> Create(RegisterViewModel model)

@@ -73,6 +73,8 @@ options.UseSqlServer(Configuration["Data:UserIdentity:ConnectionString"]));
                    template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(name: "Account", template: "{controller=Account}/{action=Index}/{id?}");
                 routes.MapRoute(name: "Admin", template: "{controller=Admin}/{action=Index}/{id?}");
+                routes.MapRoute(name: "AdminHome", template: "{controller=AdminHome}/{action=Index}/{id?}");
+                routes.MapRoute(name: "AdminUser", template: "{controller=AdminUser}/{action=Index}/{id?}");
 
             });
             SeedData.EnsurePopulated(app);

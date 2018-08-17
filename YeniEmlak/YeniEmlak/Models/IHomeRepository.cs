@@ -18,7 +18,7 @@ namespace YeniEmlak.Models
         IQueryable<HomeType> HomeTypes { get; }
         IQueryable<DependentUI> DependentUIs { get; }
         IQueryable<Equipment> Equipments { get; }
-        void Create(HomeViewModel vm);
+        void Create(Home vm);
         void Update(Home vm);
         void Delete(Home vm);
         Home FindById(int id);

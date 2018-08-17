@@ -23,22 +23,26 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" asp-area="" asp-controller="Admin" asp-action="GetUsers">
+                            <a class="nav-link active" asp-area="" asp-controller="AdminUser" asp-action="GetUsers">
                                 <span data-feather="users"></span>
                                 İstifadəçilər <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="GetHomes">
+                            <a class="nav-link" asp-area="" asp-controller="AdminHome" asp-action="GetHomes">
                                 <span data-feather="file"></span>
                                 Əmlaklar
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Settings">
+                            <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span data-feather="file"></span>
-                                Tənzimləmələr
-                            </a>
+                            Tənzimləmələr</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ChangePassword">Şifrəni dəyiş</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
                         </li>
 
                         <li class="nav-item">
@@ -72,7 +76,7 @@
         feather.replace()
     </script>
 
-     @RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 
 </body>
 </html>
