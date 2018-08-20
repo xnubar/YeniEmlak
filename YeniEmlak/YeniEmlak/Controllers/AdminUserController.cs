@@ -18,14 +18,13 @@ namespace YeniEmlak.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        private Task<User> GetCurrentUserAsync() => userManager.GetUserAsync(HttpContext.User);
 
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel vm)
         {
             if (vm.NewPassword.Equals(vm.ReNewPassword))
             {            
                 var user = (await userManager.FindByIdAsync((UserViewModel.MapUserToUserViewModel
-                       ((await GetCurrentUserAsync()))).Id));
+                       ((await (userManager.GetUserAsync(HttpContext.User))))).Id));
                 user.PasswordHash = userManager.PasswordHasher.HashPassword(user, vm.NewPassword);
                 
                 var result = await userManager.UpdateAsync(user);

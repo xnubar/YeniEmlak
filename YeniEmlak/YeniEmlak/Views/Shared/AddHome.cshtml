@@ -1,11 +1,16 @@
 ﻿@using YeniEmlak.Models
 @model YeniEmlak.ViewModel.HomeViewModel
 
-
-
 @{
     ViewData["Title"] = "AddHome";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    @if (Model.User.SubmittedByAdmin)
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 <link rel="stylesheet" type="text/css" href="~/css/addhome.css" asp-append-version="true">
 
@@ -146,13 +151,16 @@
                                     <h2>Əlaqə məlumatları:</h2>
                                     <br />
                                     <br />
-                                    <label>                                      
-                                        <span>
-                                            <r>*</r>
-                                            Ad :
-                                        </span>
-                                        <input type="text" />
-                                    </label>
+                                    @if (!Model.User.SubmittedByAdmin)
+                                    {
+                                        <label>
+                                            <span>
+                                                <r>*</r>
+                                                Ad :
+                                            </span>
+                                            <input type="text" />
+                                        </label>
+                                                                            }
                                     <br />
                                     <br />
                                     <label>
@@ -166,7 +174,7 @@
                                     <label>
                                         <span>&nbsp;</span>
                                         <input asp-for="User.UserPhoneNum.NumThree" type="text" class="minput" name="tel3" id="tel3" placeholder="3" maxlength="10">
-                                    </label>                             
+                                    </label>
                                     <br />
                                     <br />
                                     <label>

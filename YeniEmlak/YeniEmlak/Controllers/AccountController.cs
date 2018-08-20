@@ -28,7 +28,7 @@ namespace YeniEmlak.Controllers
             var model = new RegisterViewModel();
             return View("CreateAccount", model);
         }
-   
+
 
 
         [HttpPost]
@@ -74,14 +74,25 @@ namespace YeniEmlak.Controllers
                         var role = await userManager.GetRolesAsync(user);
                         if (role.First().Equals("User"))
                         {
-                            return RedirectToAction("Index", "User");
-                        }
-                        return RedirectToAction("Index", "Admin");
+                            if (!user.SubmittedByAdmin)
+                            {
+                                return RedirectToAction("Index", "User");
+                            }
+                            ModelState.AddModelError("", "User's registration is not submitted by admin.");
 
+                        }
+                        else if (role.First().Equals("Admin"))
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
+
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Invalid name or password");
                     }
                 }
             }
-            ModelState.AddModelError("", "Invalid name or password");
             return View(login);
         }
 

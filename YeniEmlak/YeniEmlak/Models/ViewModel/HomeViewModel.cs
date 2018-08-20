@@ -18,7 +18,7 @@ namespace YeniEmlak.ViewModel
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string UserId { get; set; }
-        public UserViewModel User { get; set; }
+        public UserViewModel User { get; set; } = new UserViewModel();
         public EstateDocumentType? EstateDocumentType { get; set; }
 
         public CityViewModel City { get; set; }

@@ -1,0 +1,23 @@
+﻿@model YeniEmlak.Models.ViewModel.HomesListViewModel;
+@{
+    ViewData["Title"] = "UserHomes";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section styles{
+    <link rel="stylesheet" type="text/css" href="~/css/addhome.css" asp-append-version="true">
+}
+<table class="contentHomes">
+    <tbody>
+        <tr>
+            <td height="15" width="830" />
+            <td rowspan="2" width="174" align="left" valign="top" height="2000" />
+        </tr>
+        <tr id="searchResult">
+            @{Html.RenderPartial("SearchResult", Model);}
+        </tr>
+        <tr class="pages">
+            @{Html.RenderPartial("Pagination", Model);}
+        </tr>
+    </tbody>
+</table>
+
